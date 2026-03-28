@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DevToolBox — 22+ Free Developer Tools | No Signup, No Tracking</title>
+<meta name="description" content="Free online developer tools: JSON formatter, regex tester, hash generator, JWT decoder, and 18+ more. 100% client-side, no data leaves your browser.">
+<meta name="keywords" content="free developer tools, online tools, JSON formatter, regex tester, base64 encoder, hash generator, JWT decoder, password generator, QR code generator, image compressor">
+<meta name="author" content="MaxMini">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://maxmini0214.github.io/devtoolbox/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="DevToolBox — 22+ Free Developer Tools">
+<meta property="og:description" content="JSON formatter, regex tester, hash generator, JWT decoder & more. 100% client-side, zero tracking.">
+<meta property="og:url" content="https://maxmini0214.github.io/devtoolbox/">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DevToolBox — 22+ Free Developer Tools">
+<meta name="twitter:description" content="Free online dev tools. No signup, no tracking, 100% in your browser.">
+
+<!-- JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "DevToolBox",
+  "description": "Collection of 22+ free online developer tools. 100% client-side, no data sent to servers.",
+  "url": "https://maxmini0214.github.io/devtoolbox/",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Web Browser",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Person", "name": "MaxMini" }
+}
+</script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0f172a;--card:#1e293b;--card-hover:#334155;--accent:#38bdf8;--accent2:#818cf8;--text:#e2e8f0;--text-dim:#94a3b8;--border:#334155;--green:#4ade80;--radius:12px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:inherit;text-decoration:none}
+
+/* Header */
+.header{text-align:center;padding:3rem 1.5rem 2rem;background:linear-gradient(135deg,#0f172a 0%,#1e1b4b 50%,#0f172a 100%)}
+.header h1{font-size:2.5rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.5rem}
+.header p{color:var(--text-dim);font-size:1.1rem;max-width:600px;margin:0 auto}
+.badge{display:inline-block;background:rgba(56,189,248,.15);color:var(--accent);padding:.25rem .75rem;border-radius:20px;font-size:.85rem;font-weight:600;margin-top:1rem}
+
+/* Filter */
+.filter-bar{display:flex;justify-content:center;gap:.5rem;padding:1rem 1.5rem;flex-wrap:wrap}
+.filter-btn{padding:.4rem 1rem;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text-dim);cursor:pointer;font-size:.85rem;transition:.2s}
+.filter-btn:hover,.filter-btn.active{background:var(--accent);color:#0f172a;border-color:var(--accent);font-weight:600}
+
+/* Grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem;padding:1rem 2rem 3rem;max-width:1200px;margin:0 auto}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:all .25s;position:relative;overflow:hidden}
+.card:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:0 8px 30px rgba(56,189,248,.1)}
+.card-icon{font-size:2rem;margin-bottom:.75rem}
+.card h3{font-size:1.1rem;font-weight:700;margin-bottom:.4rem}
+.card p{color:var(--text-dim);font-size:.85rem;line-height:1.5;margin-bottom:1rem}
+.card-tags{display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:.75rem}
+.tag{background:rgba(129,140,248,.12);color:var(--accent2);padding:.15rem .5rem;border-radius:8px;font-size:.7rem;font-weight:600}
+.card-link{display:inline-flex;align-items:center;gap:.4rem;color:var(--accent);font-size:.85rem;font-weight:600}
+.card-link:hover{text-decoration:underline}
+
+/* Footer */
+.footer{text-align:center;padding:2rem;color:var(--text-dim);font-size:.85rem;border-top:1px solid var(--border)}
+.footer a{color:var(--accent)}
+
+/* Search */
+.search-wrap{text-align:center;padding:0 1.5rem}
+.search-wrap input{width:100%;max-width:500px;padding:.75rem 1.25rem;border-radius:25px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:1rem;outline:none;transition:.2s}
+.search-wrap input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(56,189,248,.15)}
+.search-wrap input::placeholder{color:var(--text-dim)}
+
+@media(max-width:640px){.header h1{font-size:1.8rem}.grid{padding:1rem;grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <h1>🧰 DevToolBox</h1>
+  <p>22+ free developer tools that run entirely in your browser. No signup, no tracking, no data leaves your machine.</p>
+  <span class="badge">✅ 100% Client-Side &middot; Zero Dependencies</span>
+</header>
+
+<div class="search-wrap">
+  <input type="text" id="search" placeholder="🔍 Search tools..." autocomplete="off">
+</div>
+
+<div class="filter-bar" id="filters">
+  <button class="filter-btn active" data-cat="all">All</button>
+  <button class="filter-btn" data-cat="data">Data & Text</button>
+  <button class="filter-btn" data-cat="dev">Developer</button>
+  <button class="filter-btn" data-cat="design">Design & CSS</button>
+  <button class="filter-btn" data-cat="security">Security</button>
+  <button class="filter-btn" data-cat="productivity">Productivity</button>
+  <button class="filter-btn" data-cat="seo">SEO & Marketing</button>
+</div>
+
+<main class="grid" id="grid"></main>
+
+<footer class="footer">
+  <p>Built by <a href="https://github.com/maxmini0214" target="_blank">MaxMini</a> &middot; All tools are open source &middot; <a href="https://maxmini0214.gumroad.com" target="_blank">Premium Toolkits</a></p>
+</footer>
+
+<script>
+const tools = [
+  { icon:"📐", name:"JSONForge", desc:"Format, validate, minify & sort JSON instantly.", url:"https://maxmini0214.github.io/json-formatter/", cat:["data","dev"], tags:["JSON","Formatter","Validator"] },
+  { icon:"🔤", name:"RegexLab", desc:"Real-time regex testing with match highlighting & capture groups.", url:"https://maxmini0214.github.io/regex-tester/", cat:["dev"], tags:["Regex","Testing","Debug"] },
+  { icon:"🔄", name:"Base64 Tool", desc:"Encode and decode Base64 strings instantly.", url:"https://maxmini0214.github.io/base64-tool/", cat:["data","dev"], tags:["Base64","Encode","Decode"] },
+  { icon:"🔗", name:"URL Encoder", desc:"Encode/decode URLs with encodeURIComponent & encodeURI modes.", url:"https://maxmini0214.github.io/url-encoder/", cat:["data","dev"], tags:["URL","Encode","Decode"] },
+  { icon:"🔒", name:"Hash Generator", desc:"Generate MD5, SHA-1, SHA-256, SHA-512 hashes. File hashing supported.", url:"https://maxmini0214.github.io/hash-generator/", cat:["security","dev"], tags:["Hash","MD5","SHA256"] },
+  { icon:"🎨", name:"Color Picker", desc:"Pick colors and convert between HEX, RGB, and HSL formats.", url:"https://maxmini0214.github.io/color-picker/", cat:["design"], tags:["Color","HEX","RGB","HSL"] },
+  { icon:"📝", name:"Lorem Ipsum", desc:"Generate placeholder text by paragraphs, sentences, or words.", url:"https://maxmini0214.github.io/lorem-ipsum/", cat:["data","design"], tags:["Lorem","Placeholder","Text"] },
+  { icon:"🔑", name:"JWT Decoder", desc:"Decode & inspect JWT tokens. View header, payload, expiration.", url:"https://maxmini0214.github.io/jwt-decoder/", cat:["security","dev"], tags:["JWT","Token","Auth"] },
+  { icon:"⏰", name:"Unix Timestamp", desc:"Convert Unix timestamps to dates and back. Live clock included.", url:"https://maxmini0214.github.io/unix-timestamp/", cat:["dev"], tags:["Unix","Timestamp","Epoch"] },
+  { icon:"🔍", name:"Website Audit", desc:"Instant SEO audit: meta tags, headings, images, links, structured data.", url:"https://maxmini0214.github.io/website-audit/", cat:["seo"], tags:["SEO","Audit","Meta"] },
+  { icon:"🌈", name:"CSS Gradient", desc:"Create linear, radial & conic gradients with real-time preview.", url:"https://maxmini0214.github.io/css-gradient/", cat:["design"], tags:["CSS","Gradient","Design"] },
+  { icon:"🔐", name:"Password Generator", desc:"Generate secure random passwords with strength indicator.", url:"https://maxmini0214.github.io/password-generator/", cat:["security"], tags:["Password","Security","Random"] },
+  { icon:"📱", name:"QR Code Generator", desc:"Generate QR codes from text/URL. Custom colors, PNG/SVG download.", url:"https://maxmini0214.github.io/qr-code-generator/", cat:["productivity"], tags:["QR","Code","Generator"] },
+  { icon:"🗜️", name:"Image Compressor", desc:"Compress images in-browser with adjustable quality & size comparison.", url:"https://maxmini0214.github.io/image-compressor/", cat:["productivity","design"], tags:["Image","Compress","Optimize"] },
+  { icon:"🍅", name:"Pomodoro Timer", desc:"Focus timer with customizable intervals, session counter & alarm.", url:"https://maxmini0214.github.io/pomodoro-timer/", cat:["productivity"], tags:["Pomodoro","Timer","Focus"] },
+  { icon:"📊", name:"Diff Checker", desc:"Compare two texts with line-by-line and inline diff highlighting.", url:"https://maxmini0214.github.io/diff-checker/", cat:["data","dev"], tags:["Diff","Compare","Text"] },
+  { icon:"❗", name:"JSON Error Explainer", desc:"Paste broken JSON — get human-friendly error explanations & fixes.", url:"https://maxmini0214.github.io/json-error-explainer/", cat:["data","dev"], tags:["JSON","Error","Debug"] },
+  { icon:"✍️", name:"Markdown Preview", desc:"Write & preview Markdown in real-time. GFM tables, code blocks, export.", url:"https://maxmini0214.github.io/markdown-preview/", cat:["data","dev"], tags:["Markdown","Preview","Editor"] },
+  { icon:"🔀", name:"Keyword Mixer", desc:"Generate all keyword combinations for Google Ads. CSV download.", url:"https://maxmini0214.github.io/keyword-mixer/", cat:["seo"], tags:["Keywords","Ads","SEO"] },
+  { icon:"🛡️", name:"AI Security Checklist", desc:"Interactive 32-item security checklist for AI-assisted development.", url:"https://maxmini0214.github.io/ai-security-checklist/", cat:["security"], tags:["Security","AI","Checklist"] },
+  { icon:"⏱️", name:"Cron Parser", desc:"Parse cron expressions into plain English. See next run times.", url:"https://maxmini0214.github.io/cron-parser/", cat:["dev"], tags:["Cron","Schedule","Parser"] },
+  { icon:"📦", name:"Box Shadow Generator", desc:"Generate CSS box-shadow visually. Multiple layers, presets, copy.", url:"https://maxmini0214.github.io/box-shadow-generator/", cat:["design"], tags:["CSS","Shadow","Design"] }
+];
+
+const grid = document.getElementById('grid');
+const search = document.getElementById('search');
+let activeFilter = 'all';
+
+function render(filter, query) {
+  grid.innerHTML = '';
+  const q = (query||'').toLowerCase();
+  tools.filter(t => {
+    if (filter !== 'all' && !t.cat.includes(filter)) return false;
+    if (q && !t.name.toLowerCase().includes(q) && !t.desc.toLowerCase().includes(q) && !t.tags.some(tag=>tag.toLowerCase().includes(q))) return false;
+    return true;
+  }).forEach(t => {
+    const card = document.createElement('a');
+    card.href = t.url;
+    card.target = '_blank';
+    card.rel = 'noopener';
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="card-icon">${t.icon}</div>
+      <h3>${t.name}</h3>
+      <div class="card-tags">${t.tags.map(tag=>`<span class="tag">${tag}</span>`).join('')}</div>
+      <p>${t.desc}</p>
+      <span class="card-link">Open Tool →</span>
+    `;
+    grid.appendChild(card);
+  });
+  if (!grid.children.length) grid.innerHTML = '<p style="text-align:center;color:var(--text-dim);grid-column:1/-1;padding:3rem">No tools match your search.</p>';
+}
+
+document.getElementById('filters').addEventListener('click', e => {
+  if (!e.target.classList.contains('filter-btn')) return;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  e.target.classList.add('active');
+  activeFilter = e.target.dataset.cat;
+  render(activeFilter, search.value);
+});
+
+search.addEventListener('input', () => render(activeFilter, search.value));
+render('all');
+</script>
+</body>
+</html>
