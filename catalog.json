@@ -1,0 +1,284 @@
+[
+  {
+    "name": "json-formatter",
+    "title": "JSONForge — JSON Formatter & Validator",
+    "url": "https://maxmini0214.github.io/json-formatter/",
+    "repo": "https://github.com/maxmini0214/json-formatter",
+    "description": "Free online JSON formatter, validator, minifier with sort keys. 100% client-side, no data sent to servers.",
+    "monetization": [
+      "gumroad-pro-cta",
+      "ad-slot-reserved"
+    ],
+    "deployed": "2026-02-15",
+    "stack": "single HTML, inline CSS/JS, zero dependencies"
+  },
+  {
+    "name": "regex-tester",
+    "title": "RegexLab — Free Online Regex Tester & Debugger",
+    "url": "https://maxmini0214.github.io/regex-tester/",
+    "repo": "https://github.com/maxmini0214/regex-tester",
+    "description": "Real-time regex testing with match highlighting, capture group details, and quick reference cheatsheet. 100% client-side.",
+    "monetization": [
+      "gumroad-pro-cta",
+      "ad-slot-reserved"
+    ],
+    "deployed": "2026-02-15",
+    "stack": "single HTML, inline CSS/JS, zero dependencies"
+  },
+  {
+    "name": "base64-tool",
+    "title": "Base64 Encoder/Decoder — Free Online Tool",
+    "url": "https://maxmini0214.github.io/base64-tool/",
+    "repo": "https://github.com/maxmini0214/base64-tool",
+    "description": "Encode and decode Base64 strings instantly. 100% client-side, zero tracking.",
+    "monetization": [
+      "gumroad-pro-cta",
+      "ad-slot-reserved"
+    ],
+    "deployed": "2026-02-16",
+    "stack": "single HTML, inline CSS/JS, zero dependencies"
+  },
+  {
+    "name": "url-encoder",
+    "title": "URL Encoder/Decoder — Free Online Tool",
+    "url": "https://maxmini0214.github.io/url-encoder/",
+    "repo": "https://github.com/maxmini0214/url-encoder",
+    "description": "Encode and decode URLs with encodeURIComponent and encodeURI modes. 100% client-side.",
+    "monetization": [
+      "gumroad-pro-cta",
+      "ad-slot-reserved"
+    ],
+    "deployed": "2026-02-16",
+    "stack": "single HTML, inline CSS/JS, zero dependencies"
+  },
+  {
+    "name": "hash-generator",
+    "title": "Hash Generator — MD5 SHA1 SHA256 SHA512 Online",
+    "url": "https://maxmini0214.github.io/hash-generator/",
+    "repo": "https://github.com/maxmini0214/hash-generator",
+    "description": "Generate MD5, SHA-1, SHA-256, SHA-512 hashes instantly using Web Crypto API. File hashing supported.",
+    "monetization": [
+      "gumroad-pro-cta",
+      "ad-slot-reserved"
+    ],
+    "deployed": "2026-02-16",
+    "stack": "single HTML, inline CSS/JS, zero dependencies"
+  },
+  {
+    "name": "color-picker",
+    "title": "Color Picker & Converter — HEX RGB HSL",
+    "url": "https://maxmini0214.github.io/color-picker/",
+    "repo": "https://github.com/maxmini0214/color-picker",
+    "description": "Pick colors and convert between HEX, RGB, and HSL formats. Popular color palette included.",
+    "monetization": [
+      "gumroad-pro-cta",
+      "ad-slot-reserved"
+    ],
+    "deployed": "2026-02-16",
+    "stack": "single HTML, inline CSS/JS, zero dependencies"
+  },
+  {
+    "name": "lorem-ipsum",
+    "title": "Lorem Ipsum Generator — Free Placeholder Text",
+    "url": "https://maxmini0214.github.io/lorem-ipsum/",
+    "repo": "https://github.com/maxmini0214/lorem-ipsum",
+    "description": "Generate lorem ipsum placeholder text by paragraphs, sentences, or words. Copy as plain text or HTML.",
+    "monetization": [
+      "gumroad-pro-cta",
+      "ad-slot-reserved"
+    ],
+    "deployed": "2026-02-16",
+    "stack": "single HTML, inline CSS/JS, zero dependencies"
+  },
+  {
+    "name": "jwt-decoder",
+    "title": "JWT Decoder — Free Online JWT Token Debugger",
+    "url": "https://maxmini0214.github.io/jwt-decoder/",
+    "repo": "https://github.com/maxmini0214/jwt-decoder",
+    "description": "Decode and inspect JWT tokens instantly. View header, payload, expiration status. 100% client-side, no data sent to servers.",
+    "monetization": [
+      "gumroad-pro-cta",
+      "ad-slot-reserved"
+    ],
+    "deployed": "2026-02-16",
+    "stack": "single HTML, inline CSS/JS, zero dependencies"
+  },
+  {
+    "name": "unix-timestamp",
+    "title": "Unix Timestamp Converter — Free Online Epoch Time Tool",
+    "url": "https://maxmini0214.github.io/unix-timestamp/",
+    "repo": "https://github.com/maxmini0214/unix-timestamp",
+    "description": "Convert Unix timestamps to human-readable dates and vice versa. Live clock, millisecond support, relative time display. 100% client-side.",
+    "monetization": [
+      "gumroad-pro-cta",
+      "ad-slot-reserved"
+    ],
+    "deployed": "2026-02-16",
+    "stack": "single HTML, inline CSS/JS, zero dependencies"
+  },
+  {
+    "name": "website-audit",
+    "title": "Free AI Website Audit — SEO Checker & Site Analyzer",
+    "url": "https://maxmini0214.github.io/website-audit/",
+    "repo": "https://github.com/maxmini0214/website-audit",
+    "description": "Instant website SEO audit: meta tags, heading structure, image alt text, links, structured data. Auto-scan via CORS proxy or manual checklist mode.",
+    "monetization": [
+      "gumroad-pro-cta"
+    ],
+    "deployed": "2026-02-16",
+    "stack": "single HTML, inline CSS/JS, zero dependencies"
+  },
+  {
+    "name": "css-gradient",
+    "title": "CSS Gradient Generator — Linear, Radial & Conic",
+    "url": "https://maxmini0214.github.io/css-gradient/",
+    "repo": "https://github.com/maxmini0214/css-gradient",
+    "description": "Create beautiful CSS gradients with real-time preview. Linear, radial, and conic types. 10 presets, angle control, copy CSS instantly.",
+    "monetization": [
+      "gumroad-pro-cta",
+      "ad-slot-reserved"
+    ],
+    "deployed": "2026-02-16",
+    "stack": "single HTML, inline CSS/JS, zero dependencies"
+  },
+  {
+    "name": "password-generator",
+    "title": "Password Generator — Free Secure Random Password Tool",
+    "url": "https://maxmini0214.github.io/password-generator/",
+    "repo": "https://github.com/maxmini0214/password-generator",
+    "description": "Generate strong, secure random passwords with customizable length, character types, strength indicator, and bulk generation. 100% client-side using crypto.getRandomValues.",
+    "monetization": [
+      "gumroad-pro-cta",
+      "ad-slot-reserved"
+    ],
+    "deployed": "2026-02-16",
+    "stack": "single HTML, inline CSS/JS, zero dependencies"
+  },
+  {
+    "name": "qr-code-generator",
+    "title": "QR Code Generator — Free Online QR Creator",
+    "url": "https://maxmini0214.github.io/qr-code-generator/",
+    "repo": "https://github.com/maxmini0214/qr-code-generator",
+    "description": "Generate QR codes instantly from text or URL. Custom size, colors, PNG/SVG download. 100% client-side.",
+    "monetization": [
+      "gumroad-pro-cta",
+      "ad-slot-reserved"
+    ],
+    "deployed": "2026-02-16",
+    "stack": "single HTML, inline CSS/JS, qrcode.js CDN"
+  },
+  {
+    "name": "image-compressor",
+    "title": "Image Compressor — Free Online Image Compression Tool",
+    "url": "https://maxmini0214.github.io/image-compressor/",
+    "repo": "https://github.com/maxmini0214/image-compressor",
+    "description": "Compress images in your browser with adjustable quality. Before/after size comparison, instant download. 100% client-side using Canvas API.",
+    "monetization": [
+      "gumroad-pro-cta",
+      "ad-slot-reserved"
+    ],
+    "deployed": "2026-02-16",
+    "stack": "single HTML, inline CSS/JS, zero dependencies"
+  },
+  {
+    "name": "pomodoro-timer",
+    "title": "Pomodoro Timer — Free Online Focus Timer",
+    "url": "https://maxmini0214.github.io/pomodoro-timer/",
+    "repo": "https://github.com/maxmini0214/pomodoro-timer",
+    "description": "Free Pomodoro Timer with customizable work/break intervals, session counter, circular progress bar, and alarm sound. 100% client-side.",
+    "monetization": [
+      "gumroad-pro-cta",
+      "ad-slot-reserved"
+    ],
+    "deployed": "2026-02-16",
+    "stack": "single HTML, inline CSS/JS, Web Audio API"
+  },
+  {
+    "name": "diff-checker",
+    "title": "Diff Checker — Free Online Text Compare Tool",
+    "url": "https://maxmini0214.github.io/diff-checker/",
+    "repo": "https://github.com/maxmini0214/diff-checker",
+    "description": "Compare two texts with line-by-line and inline diff modes. Color-coded additions, deletions, and changes. 100% client-side.",
+    "monetization": [
+      "gumroad-pro-cta",
+      "ad-slot-reserved"
+    ],
+    "deployed": "2026-02-16",
+    "stack": "single HTML, inline CSS/JS, LCS diff algorithm"
+  },
+  {
+    "name": "json-error-explainer",
+    "title": "AI JSON Error Explainer — Find & Fix JSON Errors Instantly",
+    "url": "https://maxmini0214.github.io/json-error-explainer/",
+    "repo": "https://github.com/maxmini0214/json-error-explainer",
+    "description": "Paste broken JSON and get instant human-friendly error explanations with line numbers and fix suggestions. 100% client-side.",
+    "monetization": [
+      "gumroad-pro-cta",
+      "ad-slot-reserved"
+    ],
+    "deployed": "2026-02-16",
+    "stack": "single HTML, inline CSS/JS, zero dependencies"
+  },
+  {
+    "name": "markdown-preview",
+    "title": "Markdown Preview — Free Online Markdown Editor & Previewer",
+    "url": "https://maxmini0214.github.io/markdown-preview/",
+    "repo": "https://github.com/maxmini0214/markdown-preview",
+    "description": "Write and preview Markdown in real-time. GitHub Flavored Markdown with tables, code blocks, task lists. Toolbar, HTML export, download. 100% client-side.",
+    "monetization": [
+      "gumroad-pro-cta",
+      "ad-slot-reserved"
+    ],
+    "deployed": "2026-02-16",
+    "stack": "single HTML, inline CSS/JS, zero dependencies"
+  },
+  {
+    "name": "keyword-mixer",
+    "title": "Keyword Mixer — Free Google Ads Keyword Combination Tool",
+    "url": "https://maxmini0214.github.io/keyword-mixer/",
+    "repo": "https://github.com/maxmini0214/keyword-mixer",
+    "description": "Generate all keyword combinations for Google Ads. Broad, Phrase, Exact match types. CSV download. 100% client-side, no ads, no tracking.",
+    "monetization": [
+      "gumroad-pro-cta",
+      "ad-slot-reserved"
+    ],
+    "deployed": "2026-02-16",
+    "stack": "single HTML, inline CSS/JS, zero dependencies"
+  },
+  {
+    "name": "ai-security-checklist",
+    "title": "AI Coding Security Checklist — Interactive Best Practices",
+    "url": "https://maxmini0214.github.io/ai-security-checklist/",
+    "repo": "https://github.com/maxmini0214/ai-security-checklist",
+    "description": "Interactive security & privacy checklist for AI-assisted development. 32 actionable items across 6 categories with local progress saving.",
+    "monetization": [],
+    "deployed": "2026-02-16",
+    "stack": "single HTML, inline CSS/JS, zero dependencies"
+  },
+  {
+    "name": "cron-parser",
+    "title": "Cron Expression Parser — Free Online Cron Schedule Explainer",
+    "url": "https://maxmini0214.github.io/cron-parser/",
+    "repo": "https://github.com/maxmini0214/cron-parser",
+    "description": "Parse cron expressions into plain English. See next run times, validate syntax, field breakdown. 100% client-side.",
+    "monetization": [
+      "gumroad-pro-cta",
+      "ad-slot-reserved"
+    ],
+    "deployed": "2026-02-16",
+    "stack": "single HTML, inline CSS/JS, zero dependencies"
+  },
+  {
+    "name": "box-shadow-generator",
+    "title": "CSS Box Shadow Generator — Free Online Tool",
+    "url": "https://maxmini0214.github.io/box-shadow-generator/",
+    "repo": "https://github.com/maxmini0214/box-shadow-generator",
+    "description": "Generate CSS box-shadow visually with real-time preview. Multiple layers, inset shadows, presets, and one-click copy. 100% client-side.",
+    "monetization": [
+      "gumroad-pro-cta",
+      "ad-slot-reserved"
+    ],
+    "deployed": "2026-02-16",
+    "stack": "single HTML, inline CSS/JS, zero dependencies"
+  }
+]

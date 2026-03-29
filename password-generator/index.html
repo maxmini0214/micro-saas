@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<title>Password Generator – Secure Random Passwords with Entropy Analysis | MaxDevTools</title>
+<meta name="description" content="Generate cryptographically secure passwords with real-time entropy analysis, brute-force time estimation, and strength visualization. Free, open-source, no data leaves your browser.">
+<meta name="keywords" content="password generator, secure password, random password, entropy, brute force time, password strength, crypto random">
+<meta name="author" content="MaxDevTools">
+<link rel="canonical" href="https://maxmini0214.github.io/password-generator/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Password Generator – Secure Random Passwords with Entropy Analysis">
+<meta property="og:description" content="Generate cryptographically secure passwords with real-time entropy analysis and brute-force time estimation.">
+<meta property="og:url" content="https://maxmini0214.github.io/password-generator/">
+<meta property="og:site_name" content="MaxDevTools">
+<meta name="robots" content="index, follow">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Password Generator – Secure Random Passwords | MaxDevTools">
+<meta name="twitter:description" content="Generate cryptographically secure passwords with real-time entropy analysis.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0f172a;--surface:#1e293b;--surface2:#334155;--border:#475569;--text:#f1f5f9;--text2:#94a3b8;--accent:#3b82f6;--accent2:#60a5fa;--green:#22c55e;--yellow:#eab308;--orange:#f97316;--red:#ef4444;--radius:12px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:20px}
+.container{max-width:560px;width:100%}
+h1{font-size:1.75rem;text-align:center;margin:24px 0 8px;background:linear-gradient(135deg,var(--accent2),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{text-align:center;color:var(--text2);font-size:.9rem;margin-bottom:28px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:16px}
+.password-display{position:relative;display:flex;align-items:center;gap:8px}
+#password{flex:1;font-family:'Courier New',monospace;font-size:1.1rem;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:14px 16px;color:var(--text);word-break:break-all;min-height:52px;outline:none}
+.btn{border:none;border-radius:8px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:.95rem;transition:all .15s}
+.btn-icon{width:44px;height:44px;background:var(--surface2);color:var(--text)}
+.btn-icon:hover{background:var(--accent);color:#fff}
+.strength-bar{height:6px;background:var(--bg);border-radius:3px;margin:12px 0 8px;overflow:hidden}
+.strength-fill{height:100%;border-radius:3px;transition:width .3s,background .3s}
+.entropy-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.entropy-item{background:var(--bg);border-radius:8px;padding:10px 12px}
+.entropy-label{font-size:.7rem;color:var(--text2);text-transform:uppercase;letter-spacing:.5px}
+.entropy-value{font-size:.95rem;font-weight:600;margin-top:2px}
+.controls label{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:.9rem}
+.controls label:last-child{border:none}
+.slider-row{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.slider-row input[type=range]{flex:1;accent-color:var(--accent)}
+.slider-val{font-weight:700;font-size:1.1rem;min-width:36px;text-align:center}
+.toggle{position:relative;width:44px;height:24px;flex-shrink:0}
+.toggle input{opacity:0;width:0;height:0}
+.toggle .slider{position:absolute;inset:0;background:var(--surface2);border-radius:12px;cursor:pointer;transition:.2s}
+.toggle .slider::before{content:'';position:absolute;width:18px;height:18px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.2s}
+.toggle input:checked+.slider{background:var(--accent)}
+.toggle input:checked+.slider::before{transform:translateX(20px)}
+.btn-generate{width:100%;padding:14px;background:linear-gradient(135deg,var(--accent),#2563eb);color:#fff;font-size:1rem;font-weight:600;border-radius:var(--radius);margin-top:8px}
+.btn-generate:hover{filter:brightness(1.1)}
+.footer{text-align:center;margin-top:24px;font-size:.8rem;color:var(--text2)}
+.footer a{color:var(--accent2);text-decoration:none}
+.footer a:hover{text-decoration:underline}
+.cross-link{text-align:center;margin:16px 0}
+.cross-link a{color:var(--accent2);font-size:.85rem;text-decoration:none}
+.cross-link a:hover{text-decoration:underline}
+.gh-star{display:flex;align-items:center;justify-content:center;gap:8px;margin:12px 0;padding:10px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);text-decoration:none;font-size:.9rem;transition:.15s}
+.gh-star:hover{border-color:var(--accent);background:var(--surface2)}
+.gh-star svg{width:20px;height:20px;fill:var(--text)}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--green);color:#fff;padding:10px 24px;border-radius:8px;font-size:.9rem;font-weight:500;opacity:0;transition:all .3s;pointer-events:none;z-index:99}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.badge{text-align:center;margin:8px 0}
+@media(max-width:480px){h1{font-size:1.4rem}.entropy-grid{grid-template-columns:1fr}#password{font-size:.95rem}}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Password Generator – Secure Random Passwords with Entropy Analysis | MaxDevTools",
+  "url": "https://maxmini0214.github.io/password-generator/",
+  "description": "Generate cryptographically secure passwords with real-time entropy analysis, brute-force time estimation, and strength visualization. Free, open-source, no data leaves your browser.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "browserRequirements": "Requires JavaScript",
+  "author": {
+    "@type": "Organization",
+    "name": "MaxDevTools",
+    "url": "https://maxmini0214.github.io"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Is this password generator safe to use?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. All passwords are generated using the Web Crypto API (crypto.getRandomValues) directly in your browser. No data is ever sent to a server. You can verify by checking the source code or browser network inspector."}},
+    {"@type": "Question", "name": "How many bits of entropy should a strong password have?", "acceptedAnswer": {"@type": "Answer", "text": "For most purposes, 80+ bits of entropy is considered strong. A 20-character password with uppercase, lowercase, numbers, and symbols provides about 131 bits — far beyond brute force capability. For critical accounts, aim for 100+ bits."}},
+    {"@type": "Question", "name": "What does brute force time mean?", "acceptedAnswer": {"@type": "Answer", "text": "Brute force time estimates how long an attacker trying 1 trillion passwords per second would take to crack your password. Real-world attacks are usually slower due to rate limiting and slow hash algorithms like bcrypt."}},
+    {"@type": "Question", "name": "Can I generate passwords without symbols?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Toggle off the Symbols option to generate passwords with only letters and numbers. Some older systems don't accept special characters. The entropy display updates to show the impact on strength."}},
+    {"@type": "Question", "name": "Is a longer password always better?", "acceptedAnswer": {"@type": "Answer", "text": "Generally yes — each additional character exponentially increases the number of possible combinations. A 16-character password is billions of times harder to crack than an 8-character one. We recommend at least 16 characters for important accounts."}},
+    {"@type": "Question", "name": "Does this work offline?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Since all generation happens client-side using the Web Crypto API, you can save this page and use it offline. No internet connection or server is needed."}}
+  ]
+}
+</script>
+</head>
+<body>
+<div class="container">
+<h1>🔐 Password Generator</h1>
+<p class="subtitle">Cryptographically secure • Client-side only</p>
+
+<div class="card">
+<div class="password-display">
+<div id="password"></div>
+<button class="btn btn-icon" onclick="copyPassword()" title="Copy">📋</button>
+<button class="btn btn-icon" onclick="generate()" title="Regenerate">🔄</button>
+</div>
+<div class="strength-bar"><div class="strength-fill" id="strengthFill"></div></div>
+<div id="strengthLabel" style="font-size:.8rem;color:var(--text2)"></div>
+<div class="entropy-grid">
+<div class="entropy-item"><div class="entropy-label">Entropy</div><div class="entropy-value" id="entropyBits">–</div></div>
+<div class="entropy-item"><div class="entropy-label">Brute Force</div><div class="entropy-value" id="bruteTime">–</div></div>
+<div class="entropy-item"><div class="entropy-label">Combinations</div><div class="entropy-value" id="combos">–</div></div>
+<div class="entropy-item"><div class="entropy-label">Charset Size</div><div class="entropy-value" id="charsetSize">–</div></div>
+</div>
+</div>
+
+<div class="card controls">
+<div class="slider-row">
+<span style="font-size:.9rem">Length</span>
+<input type="range" id="length" min="8" max="128" value="20" oninput="updateLen();generate()">
+<span class="slider-val" id="lenVal">20</span>
+</div>
+<label>Uppercase (A-Z)<span class="toggle"><input type="checkbox" id="upper" checked onchange="generate()"><span class="slider"></span></span></label>
+<label>Lowercase (a-z)<span class="toggle"><input type="checkbox" id="lower" checked onchange="generate()"><span class="slider"></span></span></label>
+<label>Numbers (0-9)<span class="toggle"><input type="checkbox" id="digits" checked onchange="generate()"><span class="slider"></span></span></label>
+<label>Symbols (!@#$...)<span class="toggle"><input type="checkbox" id="symbols" checked onchange="generate()"><span class="slider"></span></span></label>
+<button class="btn btn-generate" onclick="generate()">Generate Password</button>
+</div>
+
+<a class="gh-star" href="https://github.com/maxmini0214/password-generator" target="_blank" rel="noopener">
+<svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+⭐ Star on GitHub
+</a>
+
+<div class="card" style="margin-top:16px">
+<h2 style="font-size:1.1rem;margin-bottom:12px">📖 How to Use</h2>
+<ol style="padding-left:20px;font-size:.9rem;color:var(--text2);line-height:1.7">
+<li><strong>Set length</strong> — drag the slider (16+ recommended for important accounts)</li>
+<li><strong>Choose character types</strong> — enable uppercase, lowercase, numbers, and symbols for maximum entropy</li>
+<li><strong>Generate</strong> — click Generate or 🔄 to create a new password instantly</li>
+<li><strong>Copy & share</strong> — click 📋 to copy, or 🔗 Share to save your settings as a URL</li>
+</ol>
+</div>
+
+<div style="text-align:center;margin:12px 0">
+<button class="btn" onclick="shareSettings()" style="padding:10px 20px;background:var(--surface);border:1px solid var(--border);color:var(--text);font-size:.9rem">🔗 Share Settings</button>
+</div>
+
+<div class="cross-link">
+<a href="https://maxmini0214.github.io/password-strength-analyzer/" target="_blank">🔍 Password Strength Analyzer</a> · 
+<a href="https://maxmini0214.github.io/hash-generator/" target="_blank">🔒 Hash Generator</a> · 
+<a href="https://maxmini0214.github.io/regex-tester/" target="_blank">🔤 Regex Tester</a> · 
+<a href="https://maxmini0214.github.io/keyword-mixer/" target="_blank">🔀 Keyword Mixer</a>
+</div>
+
+<div class="card" style="margin-top:16px">
+<h2 style="font-size:1.1rem;margin-bottom:12px">❓ FAQ</h2>
+<details style="margin-bottom:8px"><summary style="cursor:pointer;font-size:.9rem;padding:8px 0;color:var(--text)">Is this password generator safe to use?</summary><p style="font-size:.85rem;color:var(--text2);padding:8px 0 4px">Yes. All passwords are generated using the Web Crypto API (crypto.getRandomValues) directly in your browser. No data is ever sent to a server. Check the source code or network inspector to verify.</p></details>
+<details style="margin-bottom:8px"><summary style="cursor:pointer;font-size:.9rem;padding:8px 0;color:var(--text)">How many bits of entropy should a strong password have?</summary><p style="font-size:.85rem;color:var(--text2);padding:8px 0 4px">80+ bits is strong for most purposes. A 20-character password with all character types gives ~131 bits — far beyond brute force. For critical accounts, aim for 100+ bits.</p></details>
+<details style="margin-bottom:8px"><summary style="cursor:pointer;font-size:.9rem;padding:8px 0;color:var(--text)">What does brute force time mean?</summary><p style="font-size:.85rem;color:var(--text2);padding:8px 0 4px">It estimates how long an attacker trying 1 trillion passwords/sec would need. Real attacks are slower due to rate limiting and slow hashes like bcrypt.</p></details>
+<details style="margin-bottom:8px"><summary style="cursor:pointer;font-size:.9rem;padding:8px 0;color:var(--text)">Can I generate passwords without symbols?</summary><p style="font-size:.85rem;color:var(--text2);padding:8px 0 4px">Yes — toggle off Symbols for letters+numbers only. The entropy display updates to show the strength impact.</p></details>
+<details style="margin-bottom:8px"><summary style="cursor:pointer;font-size:.9rem;padding:8px 0;color:var(--text)">Is a longer password always better?</summary><p style="font-size:.85rem;color:var(--text2);padding:8px 0 4px">Generally yes — each extra character exponentially increases combinations. 16-char is billions of times harder to crack than 8-char. We recommend 16+ for important accounts.</p></details>
+<details><summary style="cursor:pointer;font-size:.9rem;padding:8px 0;color:var(--text)">Does this work offline?</summary><p style="font-size:.85rem;color:var(--text2);padding:8px 0 4px">Yes. All generation is client-side via Web Crypto API. Save the page and use offline — no server needed.</p></details>
+</div>
+
+<div style="text-align:center;margin:20px 0;padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius)">
+<p style="font-size:.95rem;margin-bottom:8px">🏦 <strong>Like zero-server tools?</strong></p>
+<p style="font-size:.85rem;color:var(--text2);margin-bottom:12px">Try <strong>DonFlow</strong> — budget drift detector, 100% in your browser.</p>
+<a href="https://maxmini0214.github.io/donflow/?demo" target="_blank" style="color:var(--accent2);font-size:.9rem">Try the live demo →</a>
+</div>
+
+<div class="badge">
+<img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fmaxmini0214.github.io%2Fpassword-generator%2F&count_bg=%233B82F6&title_bg=%231E293B&icon=&icon_color=%23E7E7E7&title=visitors&edge_flat=true" alt="visitor count">
+</div>
+
+<div class="footer">
+<p>Built with ❤️ by <a href="https://github.com/maxmini0214">MaxDevTools</a></p>
+<p style="margin-top:4px">All generation happens in your browser. No data is sent anywhere.</p>
+</div>
+</div>
+
+<div class="toast" id="toast">Copied to clipboard!</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const UPPER='ABCDEFGHIJKLMNOPQRSTUVWXYZ',LOWER='abcdefghijklmnopqrstuvwxyz',DIGITS='0123456789',SYMBOLS='!@#$%^&*()_+-=[]{}|;:,.<>?/~`';
+
+function updateLen(){$('lenVal').textContent=$('length').value}
+
+function getCharset(){
+  let c='';
+  if($('upper').checked)c+=UPPER;
+  if($('lower').checked)c+=LOWER;
+  if($('digits').checked)c+=DIGITS;
+  if($('symbols').checked)c+=SYMBOLS;
+  return c;
+}
+
+function generate(){
+  const charset=getCharset();
+  if(!charset){$('password').textContent='Select at least one option';return}
+  const len=+$('length').value;
+  const arr=new Uint32Array(len);
+  crypto.getRandomValues(arr);
+  let pw='';
+  for(let i=0;i<len;i++)pw+=charset[arr[i]%charset.length];
+  $('password').textContent=pw;
+  updateEntropy(len,charset.length);
+}
+
+function updateEntropy(len,pool){
+  const bits=len*Math.log2(pool);
+  const combos=Math.pow(pool,len);
+  $('entropyBits').textContent=bits.toFixed(1)+' bits';
+  $('charsetSize').textContent=pool+' chars';
+  // brute force @ 1 trillion/sec
+  const seconds=combos/1e12;
+  $('bruteTime').textContent=formatTime(seconds);
+  $('combos').textContent=formatCombos(bits);
+  // strength bar
+  const pct=Math.min(bits/128*100,100);
+  const fill=$('strengthFill');
+  fill.style.width=pct+'%';
+  let color,label;
+  if(bits<40){color='var(--red)';label='Weak'}
+  else if(bits<60){color='var(--orange)';label='Fair'}
+  else if(bits<80){color='var(--yellow)';label='Good'}
+  else if(bits<100){color='var(--green)';label='Strong'}
+  else{color='var(--green)';label='Very Strong'}
+  fill.style.background=color;
+  $('strengthLabel').textContent=label+' ('+bits.toFixed(0)+' bits)';
+  $('strengthLabel').style.color=color;
+}
+
+function formatTime(s){
+  if(!isFinite(s)||s>3.15e25)return '∞ (heat death)';
+  if(s<1)return '< 1 second';
+  if(s<60)return s.toFixed(0)+' sec';
+  if(s<3600)return (s/60).toFixed(0)+' min';
+  if(s<86400)return (s/3600).toFixed(0)+' hours';
+  if(s<3.15e7)return (s/86400).toFixed(0)+' days';
+  if(s<3.15e9)return (s/3.15e7).toFixed(0)+' years';
+  if(s<3.15e12)return (s/3.15e9).toFixed(0)+'K years';
+  if(s<3.15e15)return (s/3.15e12).toFixed(0)+'M years';
+  if(s<3.15e18)return (s/3.15e15).toFixed(0)+'B years';
+  return (s/3.15e18).toFixed(0)+'T+ years';
+}
+
+function formatCombos(bits){
+  if(bits<10)return Math.pow(2,bits).toFixed(0);
+  return '2^'+bits.toFixed(0);
+}
+
+function copyPassword(){
+  const pw=$('password').textContent;
+  if(!pw)return;
+  navigator.clipboard.writeText(pw).then(()=>{
+    const t=$('toast');t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),2000);
+  });
+}
+
+function shareSettings(){
+  const p=new URLSearchParams();
+  p.set('len',$('length').value);
+  p.set('upper',$('upper').checked?1:0);
+  p.set('lower',$('lower').checked?1:0);
+  p.set('digits',$('digits').checked?1:0);
+  p.set('symbols',$('symbols').checked?1:0);
+  const url=location.origin+location.pathname+'?'+p.toString();
+  navigator.clipboard.writeText(url).then(()=>{
+    const t=$('toast');t.textContent='Link copied!';t.classList.add('show');
+    setTimeout(()=>{t.classList.remove('show');t.textContent='Copied to clipboard!'},2000);
+  });
+}
+(function restoreFromURL(){
+  const p=new URLSearchParams(location.search);
+  if(p.has('len')){$('length').value=p.get('len');updateLen()}
+  if(p.has('upper'))$('upper').checked=p.get('upper')==='1';
+  if(p.has('lower'))$('lower').checked=p.get('lower')==='1';
+  if(p.has('digits'))$('digits').checked=p.get('digits')==='1';
+  if(p.has('symbols'))$('symbols').checked=p.get('symbols')==='1';
+})();
+generate();
+</script>
+<script data-goatcounter="https://maxdevtools.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+<div style="max-width:700px;margin:1rem auto;padding:1.2rem;background:#161b22;border:1px solid #bc8cff;border-radius:12px;text-align:center;">
+<p style="margin:0 0 .5rem;color:#c9d1d9;font-size:.95rem;">📚 <strong>Need cheat sheets?</strong></p>
+<p style="margin:0 0 .8rem;color:#8b949e;font-size:.85rem;">System Design, DSA, SQL, Docker, Git — instant PDF download from $5.</p>
+<a href="https://maxmini0214.github.io/store.html" style="color:#bc8cff;text-decoration:none;font-weight:600;font-size:.9rem;">Browse Developer Cheat Sheets →</a>
+</div>
+</body>
+</html>

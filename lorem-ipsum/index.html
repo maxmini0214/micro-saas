@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<title>Lorem Ipsum Generator — Free Placeholder Text Tool</title>
+<meta name="description" content="Generate lorem ipsum placeholder text by paragraphs, sentences, or words. Free online lorem ipsum generator for designers and developers. No signup, no tracking.">
+<meta property="og:title" content="Lorem Ipsum Generator — Free Placeholder Text">
+<meta property="og:description" content="Generate placeholder text instantly. Paragraphs, sentences, or words — copy as text or HTML.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://maxmini0214.github.io/lorem-ipsum/">
+<link rel="canonical" href="https://maxmini0214.github.io/lorem-ipsum/">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0f172a;--surface:#1e293b;--border:#334155;--text:#e2e8f0;--muted:#94a3b8;--accent:#3b82f6;--accent-hover:#2563eb;--success:#10b981}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column}
+header{text-align:center;padding:2rem 1rem 1rem}
+h1{font-size:1.8rem;margin-bottom:.5rem}
+.subtitle{color:var(--muted);font-size:.95rem}
+main{max-width:800px;width:100%;margin:0 auto;padding:1rem;flex:1}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:1rem}
+.controls{display:flex;gap:1rem;flex-wrap:wrap;align-items:end;margin-bottom:1rem}
+.field{display:flex;flex-direction:column;gap:.25rem}
+.field label{font-size:.8rem;color:var(--muted);font-weight:600}
+.field input,.field select{padding:.5rem .75rem;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:.9rem}
+.field input:focus,.field select:focus{outline:none;border-color:var(--accent)}
+.btn{padding:.6rem 1.2rem;border:none;border-radius:8px;cursor:pointer;font-size:.9rem;font-weight:600;transition:all .2s}
+.btn-primary{background:var(--accent);color:#fff}.btn-primary:hover{background:var(--accent-hover)}
+.btn-secondary{background:var(--border);color:var(--text)}.btn-secondary:hover{background:#475569}
+.output{width:100%;min-height:200px;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:1rem;color:var(--text);font-size:.9rem;line-height:1.7;resize:vertical}
+.stats{font-size:.8rem;color:var(--muted);margin-top:.5rem}
+.check{display:flex;align-items:center;gap:.5rem}
+.check input{accent-color:var(--accent)}
+.guide{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin:1.5rem 0}
+.guide h2{font-size:1.2rem;margin-bottom:1rem}
+.guide ol{padding-left:1.5rem;line-height:2}
+.guide li{margin-bottom:.5rem}
+.guide code{background:var(--bg);padding:.15rem .4rem;border-radius:4px;font-size:.85rem}
+.faq{margin:1.5rem 0}
+.faq h2{font-size:1.2rem;margin-bottom:1rem}
+.faq details{background:var(--surface);border:1px solid var(--border);border-radius:8px;margin-bottom:.5rem;padding:1rem}
+.faq summary{cursor:pointer;font-weight:600;font-size:.95rem}
+.faq details[open] summary{margin-bottom:.75rem}
+.faq p,.faq pre{margin-top:.5rem;color:var(--muted);font-size:.9rem;line-height:1.6}
+.faq pre{background:var(--bg);padding:.75rem;border-radius:6px;overflow-x:auto;font-size:.8rem;color:var(--text)}
+.cta{background:linear-gradient(135deg,#10b981,#3b82f6);border-radius:12px;padding:1.5rem;text-align:center;margin:1.5rem 0}
+.cta h3{margin-bottom:.5rem;font-size:1.1rem}.cta p{margin-bottom:.75rem;font-size:.95rem;opacity:.9}
+.cta a{color:#fff;font-weight:700;text-decoration:underline;font-size:1rem}
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.75rem;margin-top:1rem}
+.tool-link{display:block;padding:.75rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--accent);text-decoration:none;text-align:center;font-weight:600;transition:border-color .2s}
+.tool-link:hover{border-color:var(--accent)}
+footer{text-align:center;padding:2rem 1rem;color:var(--muted);font-size:.8rem}
+@media(max-width:600px){h1{font-size:1.4rem}.controls{flex-direction:column}}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Lorem Ipsum Generator — Free Placeholder Text Tool",
+  "url": "https://maxmini0214.github.io/lorem-ipsum/",
+  "description": "Generate lorem ipsum placeholder text by paragraphs, sentences, or words. Free online lorem ipsum generator.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "browserRequirements": "Requires JavaScript",
+  "author": { "@type": "Organization", "name": "MaxDevTools", "url": "https://maxmini0214.github.io" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Lorem Ipsum and why do designers use it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lorem Ipsum is dummy text derived from Cicero's 'De Finibus Bonorum et Malorum' (45 BC). Designers use it because real content distracts reviewers from layout, typography, and spacing decisions. The pseudo-Latin text has a natural distribution of letters and word lengths, making it visually similar to English without being readable."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I generate Lorem Ipsum in JavaScript?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can generate lorem ipsum programmatically: const words = 'lorem ipsum dolor sit amet consectetur adipiscing elit'.split(' '); function lorem(n) { return Array.from({length: n}, () => words[Math.random() * words.length | 0]).join(' '); } For production use, consider libraries like 'lorem-ipsum' on npm: import { loremIpsum } from 'lorem-ipsum'; const text = loremIpsum({ count: 3, units: 'paragraphs' });"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between Lorem Ipsum and real placeholder text?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lorem Ipsum has near-English letter distribution (making layouts realistic) but is intentionally unreadable to prevent content review during design phase. Alternatives like Hipster Ipsum or Bacon Ipsum are fun but can distract. For multilingual projects, use language-specific dummy text generators to test character sets (CJK, Cyrillic, Arabic RTL)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many words are in standard Lorem Ipsum?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The standard Lorem Ipsum passage contains 69 words beginning with 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...' and ending with '...laborum.' The full text from Cicero's original has about 249 words across 5 paragraphs. Most generators use this word bank to create random variations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I add Lorem Ipsum in Figma, Sketch, or VS Code?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Figma: Install the 'Lorem Ipsum' plugin, select a text layer, run it. Sketch: Use Data → Text → Lorem Ipsum. VS Code: Type 'lorem' and press Tab (Emmet expansion) — 'lorem10' generates 10 words, 'p*3>lorem' generates 3 paragraphs in <p> tags. For custom lengths, use this online generator and paste the result."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this tool private? Does it track my data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, 100% private. All text generation happens in your browser using JavaScript — no server requests, no data collection, no cookies. Your generated text never leaves your device. The source code is open on GitHub."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<header>
+<h1>Lorem Ipsum Generator — Free Placeholder Text</h1>
+<p class="subtitle">Generate dummy text by paragraphs, sentences, or words — copy as text or HTML</p>
+</header>
+<main>
+<div class="card">
+<div class="controls">
+<div class="field"><label>Count</label><input type="number" id="count" value="5" min="1" max="100"></div>
+<div class="field"><label>Type</label><select id="type"><option value="paragraphs">Paragraphs</option><option value="sentences">Sentences</option><option value="words">Words</option></select></div>
+<div class="check"><input type="checkbox" id="startLorem" checked><label for="startLorem" style="font-size:.85rem">Start with "Lorem ipsum..."</label></div>
+</div>
+<div style="display:flex;gap:.5rem;margin-bottom:1rem;flex-wrap:wrap">
+<button class="btn btn-primary" onclick="generate()">Generate</button>
+<button class="btn btn-secondary" onclick="copyText()">📋 Copy</button>
+<button class="btn btn-secondary" onclick="copyHtml()">Copy as HTML</button>
+<button class="btn btn-secondary" onclick="shareUrl()">🔗 Share</button>
+</div>
+<textarea class="output" id="output" readonly></textarea>
+<div class="stats" id="stats"></div>
+</div>
+
+<!-- How to Use Guide -->
+<div class="guide">
+<h2>📖 How to Use This Lorem Ipsum Generator</h2>
+<ol>
+<li><strong>Choose count & type</strong> — Select how many paragraphs, sentences, or words you need</li>
+<li><strong>Toggle "Start with Lorem ipsum"</strong> — Uncheck for fully random text from the first line</li>
+<li><strong>Click Generate</strong> — Your placeholder text appears instantly with word/character stats</li>
+<li><strong>Copy or Share</strong> — Use <code>📋 Copy</code> for plain text, <code>Copy as HTML</code> for <code>&lt;p&gt;</code>-wrapped markup, or <code>🔗 Share</code> to send a pre-filled URL to your team</li>
+</ol>
+</div>
+
+<!-- DonFlow CTA -->
+<div class="cta">
+<h3>🏦 DonFlow — Budget Drift Detector</h3>
+<p>See where your budget plan and reality diverge. Zero signup, zero cloud, zero AI.</p>
+<a href="https://maxmini0214.github.io/donflow/?demo" target="_blank">Try Live Demo →</a>
+</div>
+
+<!-- FAQ Section -->
+<div class="faq">
+<h2>❓ Frequently Asked Questions</h2>
+<details>
+<summary>What is Lorem Ipsum and where does it come from?</summary>
+<p>Lorem Ipsum is scrambled Latin derived from <em>De Finibus Bonorum et Malorum</em> by Cicero (45 BC). It has been the printing industry's standard dummy text since the 1500s. Designers use it because it mimics natural English word/letter distribution without being readable — keeping reviewers focused on layout, not content.</p>
+</details>
+<details>
+<summary>How do I generate Lorem Ipsum in JavaScript or Python?</summary>
+<p><strong>JavaScript (npm):</strong></p>
+<pre>import { loremIpsum } from 'lorem-ipsum';
+const text = loremIpsum({ count: 3, units: 'paragraphs' });</pre>
+<p><strong>Python:</strong></p>
+<pre>from lorem_text import lorem
+print(lorem.paragraphs(3))</pre>
+<p><strong>Vanilla JS (no deps):</strong></p>
+<pre>const words = 'lorem ipsum dolor sit amet consectetur'.split(' ');
+const lorem = n => Array.from({length:n}, () =>
+  words[Math.random()*words.length|0]).join(' ');</pre>
+</details>
+<details>
+<summary>How do I use Lorem Ipsum in Figma, Sketch, or VS Code?</summary>
+<p><strong>Figma:</strong> Install the "Lorem Ipsum" plugin → select text layer → run plugin.<br>
+<strong>Sketch:</strong> Data → Text → Lorem Ipsum.<br>
+<strong>VS Code (Emmet):</strong> Type <code>lorem</code> + Tab → 30 words. <code>lorem10</code> → 10 words. <code>p*3>lorem</code> → 3 paragraphs in &lt;p&gt; tags.</p>
+</details>
+<details>
+<summary>What are alternatives to Lorem Ipsum?</summary>
+<p><strong>Hipster Ipsum</strong> — trendy words for fun mockups. <strong>Bacon Ipsum</strong> — meat-themed filler. <strong>Cupcake Ipsum</strong> — sweet & playful. For serious projects, use the standard Lorem Ipsum (this tool) to avoid distracting clients. For multilingual testing, use language-specific generators (CJK, Arabic RTL, Cyrillic).</p>
+</details>
+<details>
+<summary>How many words are in the standard Lorem Ipsum passage?</summary>
+<p>The standard passage starting with "Lorem ipsum dolor sit amet..." contains <strong>69 words</strong>. The full original text from Cicero has ~249 words across 5 paragraphs. Most generators (including this one) use the original word bank to create random but natural-looking variations.</p>
+</details>
+<details>
+<summary>Is this tool private? Does it collect my data?</summary>
+<p>100% private. All text generation runs in your browser — no server requests, no tracking cookies, no data collection. Your generated text never leaves your device. <a href="https://github.com/maxmini0214" style="color:var(--accent)">Source code on GitHub</a>.</p>
+</details>
+</div>
+
+<h3 style="margin-top:2rem;margin-bottom:.5rem">🛠 More Developer Tools</h3>
+<div class="tools-grid">
+<a class="tool-link" href="https://maxmini0214.github.io/json-formatter/">JSON Formatter</a>
+<a class="tool-link" href="https://maxmini0214.github.io/regex-tester/">Regex Tester</a>
+<a class="tool-link" href="https://maxmini0214.github.io/base64-tool/">Base64 Encoder</a>
+<a class="tool-link" href="https://maxmini0214.github.io/url-encoder/">URL Encoder</a>
+<a class="tool-link" href="https://maxmini0214.github.io/hash-generator/">Hash Generator</a>
+<a class="tool-link" href="https://maxmini0214.github.io/color-picker/">Color Picker</a>
+<a class="tool-link" href="https://maxmini0214.github.io/jwt-decoder/">JWT Decoder</a>
+<a class="tool-link" href="https://maxmini0214.github.io/unix-timestamp/">Unix Timestamp</a>
+<a class="tool-link" href="https://maxmini0214.github.io/qr-code-generator/">QR Code Generator</a>
+<a class="tool-link" href="https://maxmini0214.github.io/markdown-preview/">Markdown Preview</a>
+<a class="tool-link" href="https://maxmini0214.github.io/box-shadow-generator/">Box Shadow Generator</a>
+<a class="tool-link" href="https://maxmini0214.github.io/keyword-mixer/">Keyword Mixer</a>
+<a class="tool-link" href="https://maxmini0214.github.io/cron-parser/">Cron Parser</a>
+<a class="tool-link" href="https://maxmini0214.github.io/password-generator/">Password Generator</a>
+</div>
+</main>
+<footer>
+<p>🔒 Privacy First — Nothing leaves your browser.</p>
+<p style="margin-top:.5rem">© 2026 <a href="https://github.com/maxmini0214" style="color:var(--muted)">MaxDevTools</a></p>
+</footer>
+<script>
+const WORDS='lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum'.split(' ');
+const FIRST='Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+
+function randWord(){return WORDS[Math.floor(Math.random()*WORDS.length)]}
+function randSentence(){const len=8+Math.floor(Math.random()*12);let s=Array.from({length:len},randWord).join(' ');return s.charAt(0).toUpperCase()+s.slice(1)+'.'}
+function randParagraph(){const len=4+Math.floor(Math.random()*4);return Array.from({length:len},randSentence).join(' ')}
+
+function generate(){
+const count=+document.getElementById('count').value||5;
+const type=document.getElementById('type').value;
+const startL=document.getElementById('startLorem').checked;
+let result='';
+
+if(type==='paragraphs'){
+const paras=Array.from({length:count},(_,i)=>i===0&&startL?FIRST+' '+randParagraph():randParagraph());
+result=paras.join('\n\n');
+}else if(type==='sentences'){
+const sents=Array.from({length:count},(_,i)=>i===0&&startL?FIRST:randSentence());
+result=sents.join(' ');
+}else{
+const words=Array.from({length:count},randWord);
+if(startL&&count>=2){words[0]='lorem';words[1]='ipsum'}
+result=words.join(' ');
+}
+
+document.getElementById('output').value=result;
+const wc=result.split(/\s+/).length;
+document.getElementById('stats').textContent=`${wc} words · ${result.length} characters`;
+}
+
+function copyText(){
+navigator.clipboard.writeText(document.getElementById('output').value);
+}
+function copyHtml(){
+const text=document.getElementById('output').value;
+const html=text.split('\n\n').map(p=>'<p>'+p+'</p>').join('\n');
+navigator.clipboard.writeText(html);
+}
+
+function shareUrl(){
+const count=document.getElementById('count').value;
+const type=document.getElementById('type').value;
+const startL=document.getElementById('startLorem').checked?'1':'0';
+const url=location.origin+location.pathname+'?n='+count+'&t='+type+'&s='+startL;
+navigator.clipboard.writeText(url);
+const btn=event.target;btn.textContent='✅ Copied!';setTimeout(()=>btn.textContent='🔗 Share',1500);
+}
+
+// Restore from URL params
+(function(){
+const p=new URLSearchParams(location.search);
+if(p.has('n'))document.getElementById('count').value=p.get('n');
+if(p.has('t'))document.getElementById('type').value=p.get('t');
+if(p.has('s'))document.getElementById('startLorem').checked=p.get('s')==='1';
+})();
+
+generate();
+</script>
+<script data-goatcounter="https://maxdevtools.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- Newsletter CTA -->
+<div style="max-width:480px;margin:2rem auto;padding:1.5rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;text-align:center">
+<p style="margin:0 0 0.5rem;font-size:1.1rem;font-weight:600;color:var(--text)">📬 Get Dev Tools & Tips Weekly</p>
+<p style="margin:0 0 1rem;color:var(--muted);font-size:0.9rem">Free tools, automation tricks, and dev insights. No spam.</p>
+<form action="https://buttondown.com/api/emails/embed-subscribe/maxmini0214" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.com/maxmini0214','popupwindow')" style="display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap">
+<input type="email" name="email" placeholder="your@email.com" required style="padding:0.5rem 1rem;background:var(--bg);border:1px solid var(--border);border-radius:8px;font-size:0.9rem;width:200px;color:var(--text)">
+<input type="submit" value="Subscribe" style="padding:0.5rem 1rem;background:var(--accent);color:white;border:none;border-radius:8px;cursor:pointer;font-size:0.9rem;font-weight:600">
+</form>
+</div>
+<!-- Support CTA -->
+<div style="max-width:480px;margin:1rem auto 2rem;padding:1.2rem;background:linear-gradient(135deg,#fff7ed,#fef3c7);border:1px solid #fbbf24;border-radius:12px;text-align:center;font-family:system-ui,sans-serif">
+<p style="margin:0 0 0.5rem;font-size:1rem;font-weight:600;color:#92400e">☕ Like this tool? Support the project!</p>
+<p style="margin:0 0 0.8rem;color:#78716c;font-size:0.85rem">Every coffee keeps free tools alive. No account needed.</p>
+<a href="https://paypal.me/maxseats" target="_blank" rel="noopener" style="display:inline-block;padding:0.5rem 1.5rem;background:#0070ba;color:white;border-radius:8px;text-decoration:none;font-size:0.9rem;font-weight:600">☕ Buy Me a Coffee via PayPal</a>
+</div>
+<div style="max-width:700px;margin:1rem auto;padding:1.2rem;background:#161b22;border:1px solid #bc8cff;border-radius:12px;text-align:center;">
+<p style="margin:0 0 .5rem;color:#c9d1d9;font-size:.95rem;">📚 <strong>Need cheat sheets?</strong></p>
+<p style="margin:0 0 .8rem;color:#8b949e;font-size:.85rem;">System Design, DSA, SQL, Docker, Git — instant PDF download from $5.</p>
+<a href="https://maxmini0214.github.io/store.html" style="color:#bc8cff;text-decoration:none;font-weight:600;font-size:.9rem;">Browse Developer Cheat Sheets →</a>
+</div>
+</body>
+</html>
