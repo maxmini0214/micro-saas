@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<title>Image Compressor — Free Online Tool | PixShrink</title>
+<meta name="description" content="Compress images instantly in your browser. Reduce JPEG, PNG, WebP file sizes with adjustable quality. 100% client-side, no upload to servers.">
+<meta name="keywords" content="image compressor, compress image online, reduce image size, jpeg compressor, png compressor, webp compressor, free image optimizer">
+<meta name="author" content="PixShrink by MaxxMini">
+<meta property="og:title" content="Image Compressor — Free Online Tool | PixShrink">
+<meta property="og:description" content="Compress images instantly in your browser. 100% client-side, no data leaves your browser.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://maxmini0214.github.io/micro-saas/image-compressor/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Image Compressor — Free Online Tool | PixShrink">
+<meta name="twitter:description" content="Compress images instantly in your browser. No upload, no tracking.">
+<link rel="canonical" href="https://maxmini0214.github.io/micro-saas/image-compressor/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"PixShrink","url":"https://maxmini0214.github.io/micro-saas/image-compressor/","description":"Free online image compressor. Reduce JPEG, PNG, WebP file sizes instantly in your browser.","applicationCategory":"DesignApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0f172a;--surface:#1e293b;--border:#334155;--accent:#3b82f6;--accent-hover:#2563eb;--green:#22c55e;--red:#ef4444;--text:#f1f5f9;--muted:#94a3b8;--font:'Segoe UI',system-ui,-apple-system,sans-serif;--mono:'SF Mono','Fira Code','Cascadia Code',monospace}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column}
+header{text-align:center;padding:2rem 1rem 1rem}
+header h1{font-size:1.8rem;font-weight:700;background:linear-gradient(135deg,var(--accent),#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+header p{color:var(--muted);margin-top:.4rem;font-size:.95rem}
+.container{max-width:900px;margin:0 auto;padding:0 1rem 2rem;flex:1;width:100%}
+.drop-zone{border:2px dashed var(--border);border-radius:12px;padding:3rem 2rem;text-align:center;cursor:pointer;transition:all .2s;margin-bottom:1.5rem;position:relative}
+.drop-zone:hover,.drop-zone.drag-over{border-color:var(--accent);background:#253352}
+.drop-zone h3{font-size:1.1rem;margin-bottom:.5rem}
+.drop-zone p{color:var(--muted);font-size:.9rem}
+.drop-zone input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.controls{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;margin-bottom:1.5rem;padding:1rem;background:var(--surface);border-radius:8px;border:1px solid var(--border)}
+.controls label{font-size:.85rem;color:var(--muted);font-weight:600}
+.controls input[type=range]{flex:1;min-width:150px;accent-color:var(--accent)}
+.controls select{padding:.4rem .6rem;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:6px;font-size:.85rem}
+.quality-val{font-size:1.1rem;font-weight:700;color:var(--accent);min-width:3ch;text-align:right}
+.resize-group{display:flex;gap:.5rem;align-items:center}
+.resize-group input[type=number]{width:80px;padding:.4rem .6rem;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:6px;font-size:.85rem;font-family:var(--mono)}
+.results{display:none}
+.result-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.2rem;margin-bottom:1rem}
+.result-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem;flex-wrap:wrap;gap:.5rem}
+.result-header h4{font-size:.95rem;word-break:break-all}
+.savings{font-size:.9rem;font-weight:700;padding:.3rem .6rem;border-radius:6px}
+.savings.good{color:var(--green);background:#22c55e18}
+.savings.bad{color:var(--red);background:#ef444418}
+.result-stats{display:flex;gap:1.5rem;font-size:.8rem;color:var(--muted);margin-bottom:.8rem;flex-wrap:wrap}
+.result-stats span strong{color:var(--text)}
+.preview-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+@media(max-width:600px){.preview-row{grid-template-columns:1fr}}
+.preview-box{border:1px solid var(--border);border-radius:8px;overflow:hidden;position:relative}
+.preview-box img{width:100%;height:200px;object-fit:contain;background:#0a0f1e}
+.preview-label{position:absolute;top:.4rem;left:.4rem;font-size:.7rem;padding:.2rem .5rem;background:rgba(0,0,0,.7);border-radius:4px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.btn-row{display:flex;gap:.5rem;margin-top:.8rem}
+.btn{padding:.5rem 1rem;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:6px;cursor:pointer;font-size:.85rem;transition:all .15s}
+.btn:hover{border-color:var(--accent);background:#253352}
+.btn.primary{background:var(--accent);border-color:var(--accent);font-weight:600}
+.btn.primary:hover{background:var(--accent-hover)}
+.batch-bar{display:none;justify-content:space-between;align-items:center;margin-bottom:1rem;padding:.8rem 1rem;background:var(--surface);border-radius:8px;border:1px solid var(--border)}
+.batch-bar.show{display:flex}
+.total-savings{font-size:.9rem;color:var(--green);font-weight:600}
+.cta-bar{text-align:center;margin:2rem 0;padding:1.5rem;background:linear-gradient(135deg,#1e293b,#253352);border-radius:12px;border:1px solid var(--border)}
+.cta-bar h3{font-size:1.1rem;margin-bottom:.5rem}
+.cta-bar p{color:var(--muted);font-size:.9rem;margin-bottom:1rem}
+.cta-bar a{display:inline-block;padding:.7rem 1.5rem;background:linear-gradient(135deg,#f59e0b,#f97316);color:#fff;text-decoration:none;border-radius:8px;font-weight:700;font-size:.95rem;transition:transform .15s}
+.cta-bar a:hover{transform:translateY(-1px)}
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:1.5rem 0}
+.feature{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1rem}
+.feature h4{font-size:.9rem;margin-bottom:.3rem}
+.feature p{font-size:.8rem;color:var(--muted)}
+footer{text-align:center;padding:1.5rem;color:var(--muted);font-size:.8rem;border-top:1px solid var(--border)}
+footer a{color:var(--accent);text-decoration:none}
+.spinner{display:inline-block;width:16px;height:16px;border:2px solid var(--muted);border-top-color:var(--accent);border-radius:50%;animation:spin .6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+<script data-goatcounter="https://maxdevtools.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<header>
+<h1>📸 PixShrink — Image Compressor</h1>
+<p>Drag & drop images to compress — 100% in your browser, zero upload</p>
+</header>
+<div class="container">
+<div class="drop-zone" id="dropZone">
+<h3>📂 Drop images here or click to select</h3>
+<p>Supports JPEG, PNG, WebP, BMP, GIF — up to 50MB per file</p>
+<input type="file" id="fileInput" accept="image/*" multiple>
+</div>
+
+<div class="controls" id="controls">
+<label>Quality</label>
+<input type="range" id="quality" min="1" max="100" value="80">
+<span class="quality-val" id="qualityVal">80</span>
+<label>Format</label>
+<select id="outputFormat">
+<option value="auto">Auto (same)</option>
+<option value="image/jpeg">JPEG</option>
+<option value="image/webp">WebP</option>
+<option value="image/png">PNG</option>
+</select>
+<label>Max Width</label>
+<div class="resize-group">
+<input type="number" id="maxWidth" placeholder="(none)" min="16" max="10000">
+<span style="color:var(--muted);font-size:.8rem">px</span>
+</div>
+</div>
+
+<div class="batch-bar" id="batchBar">
+<span id="batchInfo">0 images</span>
+<span class="total-savings" id="totalSavings"></span>
+<div style="display:flex;gap:.5rem">
+<button class="btn primary" onclick="downloadAll()">⬇ Download All (ZIP)</button>
+<button class="btn" onclick="clearAll()">Clear All</button>
+</div>
+</div>
+
+<div class="results" id="results"></div>
+
+<div class="cta-bar">
+<h3>🚀 Need batch processing or API access?</h3>
+<p>Get the Pro Developer Toolkit — 20+ tools, offline-ready, no limits.</p>
+<a href="https://maxmini.gumroad.com/l/ygivi?utm_source=pixshrink&utm_medium=cta&utm_campaign=image-compressor" target="_blank">Get Pro Toolkit →</a>
+</div>
+
+<div class="features">
+<div class="feature"><h4>🔒 100% Private</h4><p>Images never leave your browser. No uploads, no tracking, no cookies.</p></div>
+<div class="feature"><h4>⚡ Instant</h4><p>Canvas-based compression runs at native speed. No waiting for server round-trips.</p></div>
+<div class="feature"><h4>📦 Batch Mode</h4><p>Drop multiple images at once. Download all as a ZIP file with one click.</p></div>
+<div class="feature"><h4>🎛️ Full Control</h4><p>Adjust quality, output format, and max dimensions. See savings in real-time.</p></div>
+</div>
+</div>
+
+<footer>
+<a href="https://maxmini0214.github.io/micro-saas/hub/">← Back to DevToolBox</a> · Built by <a href="https://github.com/maxmini0214">MaxxMini</a> · 100% client-side
+</footer>
+
+<script>
+const dropZone=document.getElementById('dropZone'),fileInput=document.getElementById('fileInput'),results=document.getElementById('results'),batchBar=document.getElementById('batchBar'),qualitySlider=document.getElementById('quality'),qualityVal=document.getElementById('qualityVal');
+let compressed=[];
+
+qualitySlider.oninput=()=>{qualityVal.textContent=qualitySlider.value};
+
+dropZone.addEventListener('dragover',e=>{e.preventDefault();dropZone.classList.add('drag-over')});
+dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('drag-over'));
+dropZone.addEventListener('drop',e=>{e.preventDefault();dropZone.classList.remove('drag-over');handleFiles(e.dataTransfer.files)});
+fileInput.addEventListener('change',e=>handleFiles(e.target.files));
+
+function handleFiles(files){
+  const arr=[...files].filter(f=>f.type.startsWith('image/')&&f.size<50*1024*1024);
+  if(!arr.length)return;
+  results.style.display='block';
+  arr.forEach(processFile);
+}
+
+function processFile(file){
+  const card=document.createElement('div');
+  card.className='result-card';
+  card.innerHTML=`<div class="result-header"><h4>${esc(file.name)}</h4><span class="savings"><span class="spinner"></span> Compressing...</span></div>`;
+  results.prepend(card);
+  
+  const reader=new FileReader();
+  reader.onload=()=>{
+    const img=new Image();
+    img.onload=()=>{
+      const quality=parseInt(qualitySlider.value)/100;
+      const fmt=document.getElementById('outputFormat').value;
+      const maxW=parseInt(document.getElementById('maxWidth').value)||0;
+      
+      let w=img.naturalWidth,h=img.naturalHeight;
+      if(maxW&&w>maxW){const r=maxW/w;w=maxW;h=Math.round(h*r)}
+      
+      const canvas=document.createElement('canvas');
+      canvas.width=w;canvas.height=h;
+      const ctx=canvas.getContext('2d');
+      ctx.drawImage(img,0,0,w,h);
+      
+      let mime=fmt==='auto'?file.type:fmt;
+      if(!['image/jpeg','image/webp','image/png'].includes(mime))mime='image/jpeg';
+      
+      canvas.toBlob(blob=>{
+        if(!blob)return;
+        const saved=((1-blob.size/file.size)*100);
+        const ext=mime==='image/jpeg'?'.jpg':mime==='image/webp'?'.webp':'.png';
+        const newName=file.name.replace(/\.[^.]+$/,'')+'-compressed'+ext;
+        const url=URL.createObjectURL(blob);
+        
+        compressed.push({name:newName,blob,url,originalSize:file.size,newSize:blob.size});
+        
+        card.innerHTML=`
+          <div class="result-header">
+            <h4>${esc(file.name)}</h4>
+            <span class="savings ${saved>0?'good':'bad'}">${saved>0?'↓':'↑'} ${Math.abs(saved).toFixed(1)}%</span>
+          </div>
+          <div class="result-stats">
+            <span>Original: <strong>${fmtSize(file.size)}</strong></span>
+            <span>Compressed: <strong>${fmtSize(blob.size)}</strong></span>
+            <span>Dimensions: <strong>${w}×${h}</strong></span>
+          </div>
+          <div class="preview-row">
+            <div class="preview-box"><span class="preview-label">Original</span><img src="${reader.result}"></div>
+            <div class="preview-box"><span class="preview-label">Compressed</span><img src="${url}"></div>
+          </div>
+          <div class="btn-row">
+            <button class="btn primary" onclick="dl('${url}','${esc(newName)}')">⬇ Download</button>
+          </div>
+        `;
+        updateBatch();
+      },mime,quality);
+    };
+    img.src=reader.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function dl(url,name){const a=document.createElement('a');a.href=url;a.download=name;a.click()}
+
+function updateBatch(){
+  const n=compressed.length;
+  if(n<1)return;
+  batchBar.classList.add('show');
+  document.getElementById('batchInfo').textContent=n+' image'+(n>1?'s':'');
+  const totalOrig=compressed.reduce((s,c)=>s+c.originalSize,0);
+  const totalNew=compressed.reduce((s,c)=>s+c.newSize,0);
+  const pct=((1-totalNew/totalOrig)*100).toFixed(1);
+  document.getElementById('totalSavings').textContent=`Total: ${fmtSize(totalOrig)} → ${fmtSize(totalNew)} (${pct>0?'↓':'↑'}${Math.abs(pct)}%)`;
+}
+
+async function downloadAll(){
+  if(compressed.length===1)return dl(compressed[0].url,compressed[0].name);
+  // Simple ZIP using JSZip CDN
+  if(!window.JSZip){
+    const s=document.createElement('script');
+    s.src='https://cdn.jsdelivr.net/npm/jszip@3/dist/jszip.min.js';
+    document.head.appendChild(s);
+    await new Promise(r=>{s.onload=r;s.onerror=()=>{alert('Failed to load ZIP library. Download individually.');r()}});
+  }
+  if(!window.JSZip)return;
+  const zip=new JSZip();
+  compressed.forEach(c=>zip.file(c.name,c.blob));
+  const blob=await zip.generateAsync({type:'blob'});
+  dl(URL.createObjectURL(blob),'compressed-images.zip');
+}
+
+function clearAll(){
+  compressed.forEach(c=>URL.revokeObjectURL(c.url));
+  compressed=[];
+  results.innerHTML='';
+  results.style.display='none';
+  batchBar.classList.remove('show');
+  fileInput.value='';
+}
+
+function fmtSize(b){
+  if(b<1024)return b+'B';
+  if(b<1048576)return(b/1024).toFixed(1)+'KB';
+  return(b/1048576).toFixed(1)+'MB';
+}
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
+</script>
+</body>
+</html>
