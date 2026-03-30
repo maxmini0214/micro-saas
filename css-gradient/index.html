@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<title>CSS Gradient Generator — Free Online Tool | GradientForge</title>
+<meta name="description" content="Free online CSS gradient generator. Create beautiful linear, radial, and conic gradients visually. Copy CSS code instantly. No signup required.">
+<meta name="keywords" content="css gradient generator, gradient maker, linear gradient, radial gradient, conic gradient, css background, gradient tool, free gradient generator">
+<meta name="author" content="GradientForge by MaxxMini">
+<meta property="og:title" content="CSS Gradient Generator — Free Online Tool | GradientForge">
+<meta property="og:description" content="Create beautiful CSS gradients visually. Linear, radial, and conic gradients with live preview. 100% client-side.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://maxmini0214.github.io/micro-saas/css-gradient/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CSS Gradient Generator — Free Online Tool | GradientForge">
+<meta name="twitter:description" content="Create beautiful CSS gradients visually. Copy CSS instantly.">
+<link rel="canonical" href="https://maxmini0214.github.io/micro-saas/css-gradient/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"GradientForge","url":"https://maxmini0214.github.io/micro-saas/css-gradient/","description":"Free online CSS gradient generator. Create beautiful linear, radial, and conic gradients visually.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0f172a;--surface:#1e293b;--border:#334155;--accent:#3b82f6;--accent-hover:#2563eb;--green:#22c55e;--red:#ef4444;--text:#f1f5f9;--muted:#94a3b8;--font:'Segoe UI',system-ui,-apple-system,sans-serif;--mono:'SF Mono','Fira Code','Cascadia Code',monospace}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column}
+header{text-align:center;padding:2rem 1rem 1rem}
+header h1{font-size:1.8rem;font-weight:700;background:linear-gradient(135deg,var(--accent),#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+header p{color:var(--muted);margin-top:.4rem;font-size:.95rem}
+.container{max-width:960px;margin:1.5rem auto;padding:0 1rem;flex:1;width:100%}
+.preview-box{width:100%;height:260px;border-radius:16px;border:2px solid var(--border);margin-bottom:1.5rem;transition:all .3s}
+.controls{display:grid;gap:1rem}
+.control-group{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.2rem}
+.control-group label{display:block;font-size:.85rem;color:var(--muted);margin-bottom:.5rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.type-btns{display:flex;gap:.5rem}
+.type-btn{flex:1;padding:.6rem;border:2px solid var(--border);border-radius:8px;background:transparent;color:var(--text);cursor:pointer;font-size:.85rem;font-weight:600;transition:all .2s}
+.type-btn.active{border-color:var(--accent);background:rgba(59,130,246,.15);color:var(--accent)}
+.type-btn:hover:not(.active){border-color:var(--muted)}
+.stops-container{display:flex;flex-direction:column;gap:.6rem}
+.stop-row{display:flex;align-items:center;gap:.6rem}
+.stop-row input[type="color"]{width:44px;height:36px;border:2px solid var(--border);border-radius:8px;background:var(--surface);cursor:pointer;padding:2px}
+.stop-row input[type="range"]{flex:1;accent-color:var(--accent)}
+.stop-row .pos-val{width:40px;font-size:.8rem;color:var(--muted);text-align:right;font-family:var(--mono)}
+.stop-row button{background:transparent;border:none;color:var(--red);cursor:pointer;font-size:1.2rem;padding:0 .3rem;opacity:.6;transition:opacity .2s}
+.stop-row button:hover{opacity:1}
+.add-stop{display:inline-flex;align-items:center;gap:.4rem;padding:.5rem 1rem;border:2px dashed var(--border);border-radius:8px;background:transparent;color:var(--muted);cursor:pointer;font-size:.85rem;margin-top:.4rem;transition:all .2s}
+.add-stop:hover{border-color:var(--accent);color:var(--accent)}
+.angle-row{display:flex;align-items:center;gap:1rem}
+.angle-row input[type="range"]{flex:1;accent-color:var(--accent)}
+.angle-val{font-family:var(--mono);font-size:.9rem;min-width:45px}
+.output-area{margin-top:1.5rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.2rem;position:relative}
+.output-area pre{font-family:var(--mono);font-size:.85rem;color:var(--text);white-space:pre-wrap;word-break:break-all;line-height:1.6}
+.copy-btn{position:absolute;top:.8rem;right:.8rem;padding:.4rem .8rem;border:1px solid var(--border);border-radius:6px;background:var(--surface);color:var(--muted);cursor:pointer;font-size:.8rem;transition:all .2s}
+.copy-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.copy-btn.copied{background:var(--green);color:#fff;border-color:var(--green)}
+.presets{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}
+.preset{width:48px;height:48px;border-radius:10px;border:2px solid var(--border);cursor:pointer;transition:all .2s}
+.preset:hover{border-color:var(--accent);transform:scale(1.1)}
+footer{text-align:center;padding:2rem 1rem;color:var(--muted);font-size:.8rem}
+footer a{color:var(--accent);text-decoration:none}
+@media(max-width:600px){header h1{font-size:1.4rem}.preview-box{height:180px}.presets{gap:.4rem}.preset{width:40px;height:40px}}
+</style>
+</head>
+<body>
+<header>
+<h1>🎨 GradientForge</h1>
+<p>CSS Gradient Generator — visual builder, instant CSS output</p>
+</header>
+<div class="container">
+<div class="presets" id="presets"></div>
+<div class="preview-box" id="preview"></div>
+<div class="controls">
+<div class="control-group">
+<label>Gradient Type</label>
+<div class="type-btns">
+<button class="type-btn active" data-type="linear">Linear</button>
+<button class="type-btn" data-type="radial">Radial</button>
+<button class="type-btn" data-type="conic">Conic</button>
+</div>
+</div>
+<div class="control-group" id="angle-group">
+<label>Angle</label>
+<div class="angle-row">
+<input type="range" id="angle" min="0" max="360" value="135">
+<span class="angle-val" id="angle-val">135°</span>
+</div>
+</div>
+<div class="control-group">
+<label>Color Stops</label>
+<div class="stops-container" id="stops"></div>
+<button class="add-stop" id="add-stop">+ Add Color Stop</button>
+</div>
+</div>
+<div class="output-area">
+<button class="copy-btn" id="copy-btn">Copy CSS</button>
+<pre id="css-output"></pre>
+</div>
+</div>
+<footer>
+<p>GradientForge — 100% client-side, no data leaves your browser</p>
+<p style="margin-top:.4rem"><a href="https://maxmini0214.github.io/micro-saas/">← DevToolBox — 22+ Free Dev Tools</a></p>
+</footer>
+<script>
+const PRESETS = [
+  {stops:[{c:'#667eea',p:0},{c:'#764ba2',p:100}],type:'linear',angle:135},
+  {stops:[{c:'#f093fb',p:0},{c:'#f5576c',p:100}],type:'linear',angle:135},
+  {stops:[{c:'#4facfe',p:0},{c:'#00f2fe',p:100}],type:'linear',angle:135},
+  {stops:[{c:'#43e97b',p:0},{c:'#38f9d7',p:100}],type:'linear',angle:135},
+  {stops:[{c:'#fa709a',p:0},{c:'#fee140',p:100}],type:'linear',angle:135},
+  {stops:[{c:'#a18cd1',p:0},{c:'#fbc2eb',p:100}],type:'linear',angle:135},
+  {stops:[{c:'#fccb90',p:0},{c:'#d57eeb',p:100}],type:'linear',angle:135},
+  {stops:[{c:'#ff9a9e',p:0},{c:'#fecfef',p:50},{c:'#fecfef',p:100}],type:'linear',angle:180},
+  {stops:[{c:'#0c3483',p:0},{c:'#a2b6df',p:50},{c:'#6b8cce',p:100}],type:'radial',angle:0},
+  {stops:[{c:'#ff0844',p:0},{c:'#ffb199',p:100}],type:'conic',angle:0},
+];
+
+let state = {
+  type: 'linear',
+  angle: 135,
+  stops: [{c:'#667eea',p:0},{c:'#764ba2',p:100}]
+};
+
+const preview = document.getElementById('preview');
+const stopsEl = document.getElementById('stops');
+const angleEl = document.getElementById('angle');
+const angleVal = document.getElementById('angle-val');
+const angleGroup = document.getElementById('angle-group');
+const output = document.getElementById('css-output');
+const copyBtn = document.getElementById('copy-btn');
+const presetsEl = document.getElementById('presets');
+
+// Presets
+PRESETS.forEach((p, i) => {
+  const btn = document.createElement('div');
+  btn.className = 'preset';
+  btn.style.background = buildCSS(p).css;
+  btn.onclick = () => { state = JSON.parse(JSON.stringify(p)); syncUI(); };
+  presetsEl.appendChild(btn);
+});
+
+// Type buttons
+document.querySelectorAll('.type-btn').forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    state.type = btn.dataset.type;
+    update();
+  };
+});
+
+// Angle
+angleEl.oninput = () => { state.angle = +angleEl.value; angleVal.textContent = state.angle + '°'; update(); };
+
+// Add stop
+document.getElementById('add-stop').onclick = () => {
+  const last = state.stops[state.stops.length - 1];
+  const prev = state.stops[state.stops.length - 2] || last;
+  const mid = Math.round((prev.p + last.p) / 2);
+  // mix color
+  const nc = '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6,'0');
+  state.stops.push({c: nc, p: Math.min(100, last.p + 10)});
+  state.stops.sort((a,b) => a.p - b.p);
+  renderStops();
+  update();
+};
+
+function buildCSS(s) {
+  const stopsStr = s.stops.map(st => `${st.c} ${st.p}%`).join(', ');
+  let css;
+  if (s.type === 'linear') css = `linear-gradient(${s.angle}deg, ${stopsStr})`;
+  else if (s.type === 'radial') css = `radial-gradient(circle, ${stopsStr})`;
+  else css = `conic-gradient(from ${s.angle}deg, ${stopsStr})`;
+  return {css, full: `background: ${css};`};
+}
+
+function update() {
+  const {css, full} = buildCSS(state);
+  preview.style.background = css;
+  output.textContent = full;
+  angleGroup.style.display = state.type === 'radial' ? 'none' : '';
+  angleGroup.querySelector('label').textContent = state.type === 'conic' ? 'Start Angle' : 'Angle';
+}
+
+function renderStops() {
+  stopsEl.innerHTML = '';
+  state.stops.forEach((s, i) => {
+    const row = document.createElement('div');
+    row.className = 'stop-row';
+    row.innerHTML = `
+      <input type="color" value="${s.c}">
+      <input type="range" min="0" max="100" value="${s.p}">
+      <span class="pos-val">${s.p}%</span>
+      ${state.stops.length > 2 ? '<button title="Remove">×</button>' : ''}
+    `;
+    const colorIn = row.querySelector('input[type="color"]');
+    const rangeIn = row.querySelector('input[type="range"]');
+    const posVal = row.querySelector('.pos-val');
+    const removeBtn = row.querySelector('button');
+    colorIn.oninput = () => { state.stops[i].c = colorIn.value; update(); };
+    rangeIn.oninput = () => { state.stops[i].p = +rangeIn.value; posVal.textContent = rangeIn.value + '%'; update(); };
+    if (removeBtn) removeBtn.onclick = () => { state.stops.splice(i, 1); renderStops(); update(); };
+    stopsEl.appendChild(row);
+  });
+}
+
+copyBtn.onclick = () => {
+  navigator.clipboard.writeText(buildCSS(state).full).then(() => {
+    copyBtn.textContent = 'Copied!';
+    copyBtn.classList.add('copied');
+    setTimeout(() => { copyBtn.textContent = 'Copy CSS'; copyBtn.classList.remove('copied'); }, 1500);
+  });
+};
+
+function syncUI() {
+  document.querySelectorAll('.type-btn').forEach(b => b.classList.toggle('active', b.dataset.type === state.type));
+  angleEl.value = state.angle;
+  angleVal.textContent = state.angle + '°';
+  renderStops();
+  update();
+}
+
+syncUI();
+</script>
+</body>
+</html>
