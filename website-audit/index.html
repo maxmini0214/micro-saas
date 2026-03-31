@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<title>Free Website SEO Audit — Site Analyzer & Checker | SiteAudit</title>
+<meta name="description" content="Free instant website SEO audit: check meta tags, headings, images, links, structured data, and performance. Manual checklist + auto-scan mode. 100% client-side.">
+<meta name="keywords" content="website audit, seo checker, site analyzer, meta tag checker, heading structure, seo tool, free seo audit, website health check">
+<meta name="author" content="SiteAudit by MaxxMini">
+<meta property="og:title" content="Free Website SEO Audit — Site Analyzer & Checker | SiteAudit">
+<meta property="og:description" content="Instant website SEO audit: meta tags, headings, images, links, structured data. 100% client-side.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://maxmini0214.github.io/website-audit/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Website SEO Audit — Site Analyzer & Checker | SiteAudit">
+<meta name="twitter:description" content="Instant website SEO audit: meta tags, headings, images, links, structured data. 100% client-side.">
+<link rel="canonical" href="https://maxmini0214.github.io/website-audit/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"SiteAudit","url":"https://maxmini0214.github.io/website-audit/","description":"Free instant website SEO audit tool. Check meta tags, heading structure, image alt text, links, and structured data.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0f172a;--surface:#1e293b;--border:#334155;--accent:#3b82f6;--accent-hover:#2563eb;--green:#22c55e;--yellow:#eab308;--red:#ef4444;--text:#f1f5f9;--muted:#94a3b8;--font:'Segoe UI',system-ui,-apple-system,sans-serif;--mono:'SF Mono','Fira Code','Cascadia Code',monospace}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column}
+header{text-align:center;padding:2rem 1rem 1rem}
+header h1{font-size:1.8rem;font-weight:700;background:linear-gradient(135deg,var(--accent),#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+header p{color:var(--muted);margin-top:.4rem;font-size:.95rem}
+.container{max-width:900px;margin:0 auto;padding:0 1rem 2rem;flex:1;width:100%}
+.input-bar{display:flex;gap:.5rem;margin-bottom:1.5rem}
+.input-bar input{flex:1;padding:.7rem 1rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:.95rem;outline:none}
+.input-bar input:focus{border-color:var(--accent)}
+.input-bar input::placeholder{color:#475569}
+.btn{padding:.6rem 1.2rem;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:8px;cursor:pointer;font-size:.9rem;transition:all .15s;white-space:nowrap}
+.btn:hover{border-color:var(--accent);background:#253352}
+.btn.primary{background:var(--accent);border-color:var(--accent);font-weight:600}
+.btn.primary:hover{background:var(--accent-hover)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.tabs{display:flex;gap:.5rem;margin-bottom:1rem;flex-wrap:wrap}
+.tab{padding:.5rem 1rem;border:1px solid var(--border);background:var(--surface);color:var(--muted);border-radius:8px;cursor:pointer;font-size:.85rem;transition:all .15s}
+.tab:hover{border-color:var(--accent)}
+.tab.active{border-color:var(--accent);color:var(--text);background:#253352}
+.score-bar{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;padding:1rem;background:var(--surface);border-radius:12px;border:1px solid var(--border)}
+.score-circle{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:700;flex-shrink:0}
+.score-circle.good{background:#22c55e20;color:var(--green);border:3px solid var(--green)}
+.score-circle.ok{background:#eab30820;color:var(--yellow);border:3px solid var(--yellow)}
+.score-circle.bad{background:#ef444420;color:var(--red);border:3px solid var(--red)}
+.score-info{flex:1}
+.score-info h3{font-size:1rem;margin-bottom:.3rem}
+.score-info p{color:var(--muted);font-size:.85rem}
+.results{display:flex;flex-direction:column;gap:.75rem}
+.check-item{padding:.8rem 1rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;display:flex;align-items:flex-start;gap:.75rem}
+.check-icon{font-size:1.1rem;flex-shrink:0;margin-top:2px}
+.check-body{flex:1;min-width:0}
+.check-body h4{font-size:.9rem;margin-bottom:.2rem}
+.check-body p{color:var(--muted);font-size:.8rem;word-break:break-word}
+.check-body code{background:#0f172a;padding:2px 6px;border-radius:4px;font-family:var(--mono);font-size:.78rem}
+.manual-section{margin-top:1.5rem}
+.manual-section h3{font-size:1rem;margin-bottom:.75rem;color:var(--muted)}
+.checklist-item{display:flex;align-items:center;gap:.6rem;padding:.6rem .8rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;margin-bottom:.4rem;cursor:pointer;transition:all .15s}
+.checklist-item:hover{border-color:var(--accent)}
+.checklist-item input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);cursor:pointer}
+.checklist-item label{cursor:pointer;font-size:.88rem;flex:1}
+.checklist-item.done{opacity:.6}
+.checklist-item.done label{text-decoration:line-through}
+.progress-text{font-size:.85rem;color:var(--muted);margin-bottom:.75rem}
+.hidden{display:none}
+.loading{text-align:center;padding:2rem;color:var(--muted)}
+.loading .spinner{display:inline-block;width:24px;height:24px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;margin-right:.5rem;vertical-align:middle}
+@keyframes spin{to{transform:rotate(360deg)}}
+.cta-bar{text-align:center;margin:2rem 0;padding:1.5rem;background:linear-gradient(135deg,#1e293b,#253352);border-radius:12px;border:1px solid var(--border)}
+.cta-bar p{color:var(--muted);font-size:.9rem;margin-bottom:.8rem}
+.cta-bar a{color:var(--accent);text-decoration:none;font-weight:600}
+.cta-bar a:hover{text-decoration:underline}
+footer{text-align:center;padding:1.5rem;color:var(--muted);font-size:.8rem;border-top:1px solid var(--border)}
+footer a{color:var(--accent);text-decoration:none}
+@media(max-width:600px){.input-bar{flex-direction:column}.score-bar{flex-direction:column;text-align:center}}
+</style>
+</head>
+<body>
+<header>
+<h1>🔍 SiteAudit</h1>
+<p>Free Website SEO Audit — Check meta, headings, images, links & more</p>
+</header>
+
+<div class="container">
+<div class="input-bar">
+<input type="url" id="urlInput" placeholder="https://example.com" autofocus>
+<button class="btn primary" id="scanBtn" onclick="startScan()">Scan</button>
+<button class="btn" onclick="pasteHTML()">Paste HTML</button>
+</div>
+
+<div class="tabs">
+<div class="tab active" data-tab="auto" onclick="switchTab('auto')">Auto Scan</div>
+<div class="tab" data-tab="manual" onclick="switchTab('manual')">Manual Checklist</div>
+</div>
+
+<div id="autoTab">
+<div id="loading" class="loading hidden"><span class="spinner"></span>Fetching & analyzing…</div>
+<div id="scoreSection" class="hidden">
+<div class="score-bar">
+<div class="score-circle" id="scoreCircle">—</div>
+<div class="score-info">
+<h3 id="scoreTitle">SEO Score</h3>
+<p id="scoreSummary">Enter a URL above and click Scan</p>
+</div>
+</div>
+</div>
+<div class="results" id="results"></div>
+</div>
+
+<div id="manualTab" class="hidden">
+<div class="progress-text" id="manualProgress">0 / 20 completed</div>
+<div id="manualChecklist"></div>
+</div>
+</div>
+
+<div class="container">
+<div class="cta-bar">
+<p>Need a complete dev toolkit? Check out <a href="https://maxmini0214.github.io/micro-saas/" target="_blank">DevToolBox</a> — 25+ free developer tools</p>
+</div>
+</div>
+
+<footer>
+<p>SiteAudit by <a href="https://maxmini0214.github.io/micro-saas/" target="_blank">MaxxMini</a> · 100% client-side · No data sent to servers</p>
+</footer>
+
+<!-- Paste HTML Modal -->
+<div id="pasteModal" style="display:none;position:fixed;inset:0;background:#0008;z-index:100;align-items:center;justify-content:center">
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;width:90%;max-width:700px;max-height:80vh;display:flex;flex-direction:column">
+<h3 style="margin-bottom:.5rem">Paste HTML Source</h3>
+<p style="color:var(--muted);font-size:.8rem;margin-bottom:.75rem">View Page Source (Ctrl+U) → Copy All → Paste below</p>
+<textarea id="pasteArea" style="flex:1;min-height:300px;background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:.8rem;font-family:var(--mono);font-size:.8rem;resize:none" placeholder="<!DOCTYPE html>..."></textarea>
+<div style="display:flex;gap:.5rem;margin-top:.75rem;justify-content:flex-end">
+<button class="btn" onclick="closePasteModal()">Cancel</button>
+<button class="btn primary" onclick="analyzeFromPaste()">Analyze</button>
+</div>
+</div>
+</div>
+
+<script>
+const PROXY = 'https://api.allorigins.win/raw?url=';
+const checks = [];
+let currentTab = 'auto';
+
+function switchTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
+  document.getElementById('autoTab').classList.toggle('hidden', tab !== 'auto');
+  document.getElementById('manualTab').classList.toggle('hidden', tab !== 'manual');
+  if (tab === 'manual') initManualChecklist();
+}
+
+function pasteHTML() {
+  const m = document.getElementById('pasteModal');
+  m.style.display = 'flex';
+  document.getElementById('pasteArea').focus();
+}
+function closePasteModal() { document.getElementById('pasteModal').style.display = 'none'; }
+function analyzeFromPaste() {
+  const html = document.getElementById('pasteArea').value.trim();
+  if (!html) return;
+  closePasteModal();
+  analyzeHTML(html, document.getElementById('urlInput').value || 'pasted-html');
+}
+
+async function startScan() {
+  const url = document.getElementById('urlInput').value.trim();
+  if (!url) { document.getElementById('urlInput').focus(); return; }
+  const btn = document.getElementById('scanBtn');
+  const loading = document.getElementById('loading');
+  btn.disabled = true;
+  loading.classList.remove('hidden');
+  document.getElementById('results').innerHTML = '';
+  document.getElementById('scoreSection').classList.add('hidden');
+  try {
+    const r = await fetch(PROXY + encodeURIComponent(url));
+    if (!r.ok) throw new Error('Fetch failed: ' + r.status);
+    const html = await r.text();
+    analyzeHTML(html, url);
+  } catch (e) {
+    document.getElementById('results').innerHTML = `<div class="check-item"><span class="check-icon">⚠️</span><div class="check-body"><h4>Could not fetch URL</h4><p>${e.message}. Try "Paste HTML" instead — right-click the page → View Page Source → copy → paste.</p></div></div>`;
+  }
+  btn.disabled = false;
+  loading.classList.add('hidden');
+}
+
+function analyzeHTML(html, url) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, 'text/html');
+  checks.length = 0;
+  // 1. Title
+  const title = doc.querySelector('title');
+  const tv = title ? title.textContent.trim() : '';
+  if (!tv) checks.push({s:'fail',t:'Missing <title>',d:'Every page needs a title tag for SEO.'});
+  else if (tv.length < 20) checks.push({s:'warn',t:'Title too short',d:`"${tv}" (${tv.length} chars). Aim for 50-60 chars.`});
+  else if (tv.length > 70) checks.push({s:'warn',t:'Title too long',d:`"${tv}" (${tv.length} chars). May be truncated in search results. Aim ≤60.`});
+  else checks.push({s:'pass',t:'Title tag',d:`"${tv}" (${tv.length} chars) ✓`});
+
+  // 2. Meta description
+  const md = doc.querySelector('meta[name="description"]');
+  const mdv = md ? md.content.trim() : '';
+  if (!mdv) checks.push({s:'fail',t:'Missing meta description',d:'Add a <meta name="description"> for better CTR in search results.'});
+  else if (mdv.length < 50) checks.push({s:'warn',t:'Meta description too short',d:`${mdv.length} chars. Aim for 120-160.`});
+  else if (mdv.length > 160) checks.push({s:'warn',t:'Meta description too long',d:`${mdv.length} chars. May be truncated. Aim ≤160.`});
+  else checks.push({s:'pass',t:'Meta description',d:`${mdv.length} chars ✓`});
+
+  // 3. Viewport
+  const vp = doc.querySelector('meta[name="viewport"]');
+  checks.push(vp ? {s:'pass',t:'Viewport meta',d:'Mobile-responsive viewport set ✓'} : {s:'fail',t:'Missing viewport meta',d:'Add <meta name="viewport" content="width=device-width, initial-scale=1.0"> for mobile.'});
+
+  // 4. Canonical
+  const canon = doc.querySelector('link[rel="canonical"]');
+  checks.push(canon ? {s:'pass',t:'Canonical URL',d:`<code>${canon.href}</code> ✓`} : {s:'warn',t:'No canonical URL',d:'Add <link rel="canonical"> to avoid duplicate content issues.'});
+
+  // 5. H1
+  const h1s = doc.querySelectorAll('h1');
+  if (h1s.length === 0) checks.push({s:'fail',t:'No H1 tag',d:'Every page should have exactly one H1.'});
+  else if (h1s.length > 1) checks.push({s:'warn',t:`Multiple H1 tags (${h1s.length})`,d:'Best practice: use exactly one H1 per page.'});
+  else checks.push({s:'pass',t:'H1 tag',d:`"${h1s[0].textContent.trim().substring(0,60)}" ✓`});
+
+  // 6. Heading hierarchy
+  const headings = doc.querySelectorAll('h1,h2,h3,h4,h5,h6');
+  let hierOk = true, prevLevel = 0;
+  headings.forEach(h => {
+    const l = parseInt(h.tagName[1]);
+    if (l > prevLevel + 1 && prevLevel > 0) hierOk = false;
+    prevLevel = l;
+  });
+  checks.push(hierOk ? {s:'pass',t:'Heading hierarchy',d:`${headings.length} headings in proper order ✓`} : {s:'warn',t:'Heading hierarchy broken',d:'Headings skip levels (e.g. H1 → H3). Keep sequential order.'});
+
+  // 7. Images without alt
+  const imgs = doc.querySelectorAll('img');
+  const noAlt = [...imgs].filter(i => !i.alt || !i.alt.trim());
+  if (imgs.length === 0) checks.push({s:'pass',t:'Images',d:'No images found (N/A)'});
+  else if (noAlt.length === 0) checks.push({s:'pass',t:'Image alt text',d:`All ${imgs.length} images have alt text ✓`});
+  else checks.push({s:'warn',t:`${noAlt.length}/${imgs.length} images missing alt text`,d:'Add descriptive alt text for accessibility and SEO.'});
+
+  // 8. Open Graph
+  const ogTitle = doc.querySelector('meta[property="og:title"]');
+  const ogDesc = doc.querySelector('meta[property="og:description"]');
+  const ogImg = doc.querySelector('meta[property="og:image"]');
+  const ogCount = [ogTitle, ogDesc, ogImg].filter(Boolean).length;
+  if (ogCount === 3) checks.push({s:'pass',t:'Open Graph tags',d:'og:title, og:description, og:image all present ✓'});
+  else if (ogCount > 0) checks.push({s:'warn',t:'Incomplete Open Graph',d:`${ogCount}/3 tags found. Add missing: ${[!ogTitle&&'og:title',!ogDesc&&'og:description',!ogImg&&'og:image'].filter(Boolean).join(', ')}`});
+  else checks.push({s:'fail',t:'No Open Graph tags',d:'Add og:title, og:description, og:image for better social sharing.'});
+
+  // 9. Twitter Card
+  const tc = doc.querySelector('meta[name="twitter:card"]');
+  checks.push(tc ? {s:'pass',t:'Twitter Card',d:`type: ${tc.content} ✓`} : {s:'warn',t:'No Twitter Card meta',d:'Add <meta name="twitter:card"> for better Twitter/X previews.'});
+
+  // 10. Structured Data
+  const jsonld = doc.querySelectorAll('script[type="application/ld+json"]');
+  checks.push(jsonld.length > 0 ? {s:'pass',t:'Structured Data (JSON-LD)',d:`${jsonld.length} schema(s) found ✓`} : {s:'warn',t:'No structured data',d:'Add JSON-LD schema.org markup for rich search results.'});
+
+  // 11. Lang attribute
+  const lang = doc.documentElement.lang;
+  checks.push(lang ? {s:'pass',t:'Lang attribute',d:`<code>lang="${lang}"</code> ✓`} : {s:'warn',t:'Missing lang attribute',d:'Add lang="en" (or appropriate) to <html> for accessibility.'});
+
+  // 12. Links
+  const links = doc.querySelectorAll('a[href]');
+  const extLinks = [...links].filter(a => {try{return new URL(a.href).origin !== new URL(url).origin}catch{return false}});
+  const nofollow = [...links].filter(a => (a.rel||'').includes('nofollow'));
+  checks.push({s:'pass',t:'Links',d:`${links.length} total (${extLinks.length} external, ${nofollow.length} nofollow)`});
+
+  // 13. Favicon
+  const fav = doc.querySelector('link[rel="icon"],link[rel="shortcut icon"]');
+  checks.push(fav ? {s:'pass',t:'Favicon',d:'Favicon found ✓'} : {s:'warn',t:'No favicon',d:'Add a favicon for browser tabs and bookmarks.'});
+
+  // 14. Content length
+  const bodyText = doc.body ? doc.body.textContent.trim() : '';
+  const wordCount = bodyText.split(/\s+/).filter(Boolean).length;
+  if (wordCount < 50) checks.push({s:'warn',t:'Very little content',d:`~${wordCount} words. Thin content may hurt rankings.`});
+  else if (wordCount < 300) checks.push({s:'warn',t:'Light content',d:`~${wordCount} words. Consider adding more substantial content.`});
+  else checks.push({s:'pass',t:'Content length',d:`~${wordCount} words ✓`});
+
+  // 15. Charset
+  const charset = doc.querySelector('meta[charset]');
+  checks.push(charset ? {s:'pass',t:'Charset',d:`${charset.getAttribute('charset')} ✓`} : {s:'warn',t:'No charset declaration',d:'Add <meta charset="UTF-8">.'});
+
+  // Score
+  const pass = checks.filter(c=>c.s==='pass').length;
+  const warn = checks.filter(c=>c.s==='warn').length;
+  const fail = checks.filter(c=>c.s==='fail').length;
+  const total = checks.length;
+  const score = Math.round((pass / total) * 100);
+
+  // Render
+  const sc = document.getElementById('scoreCircle');
+  sc.textContent = score;
+  sc.className = 'score-circle ' + (score >= 80 ? 'good' : score >= 50 ? 'ok' : 'bad');
+  document.getElementById('scoreTitle').textContent = score >= 80 ? 'Great SEO foundation!' : score >= 50 ? 'Needs improvement' : 'Critical issues found';
+  document.getElementById('scoreSummary').textContent = `${pass} passed · ${warn} warnings · ${fail} failures — ${total} checks total`;
+  document.getElementById('scoreSection').classList.remove('hidden');
+
+  const icons = {pass:'✅', warn:'⚠️', fail:'❌'};
+  document.getElementById('results').innerHTML = checks.map(c => `<div class="check-item"><span class="check-icon">${icons[c.s]}</span><div class="check-body"><h4>${c.t}</h4><p>${c.d}</p></div></div>`).join('');
+}
+
+// Manual Checklist
+const manualItems = [
+  'Title tag present and 50-60 characters',
+  'Meta description 120-160 characters',
+  'One H1 tag per page',
+  'Heading hierarchy (H1→H2→H3…) correct',
+  'All images have descriptive alt text',
+  'Open Graph tags (og:title, og:description, og:image)',
+  'Twitter Card meta tag',
+  'Canonical URL set',
+  'Mobile viewport meta tag',
+  'Favicon configured',
+  'robots.txt allows crawling',
+  'XML sitemap exists and is valid',
+  'Google Search Console connected',
+  'Page loads in under 3 seconds',
+  'No broken links (404s)',
+  'HTTPS enabled (SSL certificate)',
+  'Structured data / JSON-LD schema',
+  'Internal linking between pages',
+  'URL structure is clean and descriptive',
+  'Content is at least 300+ words'
+];
+
+function initManualChecklist() {
+  const el = document.getElementById('manualChecklist');
+  if (el.children.length) return;
+  const saved = JSON.parse(localStorage.getItem('siteaudit_checklist') || '{}');
+  el.innerHTML = manualItems.map((item, i) => {
+    const checked = saved[i] ? 'checked' : '';
+    const done = saved[i] ? 'done' : '';
+    return `<div class="checklist-item ${done}" onclick="toggleCheck(this,${i})"><input type="checkbox" ${checked} tabindex="-1"><label>${item}</label></div>`;
+  }).join('');
+  updateProgress();
+}
+
+function toggleCheck(el, i) {
+  const cb = el.querySelector('input');
+  cb.checked = !cb.checked;
+  el.classList.toggle('done', cb.checked);
+  const saved = JSON.parse(localStorage.getItem('siteaudit_checklist') || '{}');
+  if (cb.checked) saved[i] = true; else delete saved[i];
+  localStorage.setItem('siteaudit_checklist', JSON.stringify(saved));
+  updateProgress();
+}
+
+function updateProgress() {
+  const total = manualItems.length;
+  const done = document.querySelectorAll('#manualChecklist .done').length;
+  document.getElementById('manualProgress').textContent = `${done} / ${total} completed`;
+}
+
+document.getElementById('urlInput').addEventListener('keydown', e => { if (e.key === 'Enter') startScan(); });
+</script>
+</body>
+</html>
