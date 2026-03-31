@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FocusTick — Pomodoro Timer | DevToolBox</title>
+<meta name="description" content="Free online Pomodoro timer with focus/break cycles, session tracking, and ambient sounds. 100% client-side, no data sent to servers.">
+<meta property="og:title" content="FocusTick — Pomodoro Timer">
+<meta property="og:description" content="Free Pomodoro timer with customizable focus & break durations. Track your productivity sessions.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://maxmini0214.github.io/micro-saas/pomodoro-timer/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="FocusTick — Pomodoro Timer">
+<meta name="twitter:description" content="Free Pomodoro timer with focus/break cycles and session tracking.">
+<link rel="canonical" href="https://maxmini0214.github.io/micro-saas/pomodoro-timer/">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"FocusTick — Pomodoro Timer","url":"https://maxmini0214.github.io/micro-saas/pomodoro-timer/","description":"Free online Pomodoro timer with focus/break cycles and session tracking.","applicationCategory":"ProductivityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0f172a;--surface:#1e293b;--border:#334155;--text:#e2e8f0;--muted:#94a3b8;--accent:#3b82f6;--focus:#ef4444;--break:#22c55e;--long-break:#a855f7;--radius:12px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem}
+.container{max-width:480px;width:100%}
+header{text-align:center;margin-bottom:2rem}
+h1{font-size:1.6rem;font-weight:700;margin-bottom:.25rem}
+h1 span{color:var(--accent)}
+.subtitle{color:var(--muted);font-size:.85rem}
+.mode-tabs{display:flex;gap:.5rem;margin-bottom:1.5rem;background:var(--surface);border-radius:var(--radius);padding:4px}
+.mode-tab{flex:1;padding:.6rem;border:none;background:transparent;color:var(--muted);font-size:.85rem;font-weight:600;border-radius:8px;cursor:pointer;transition:.2s}
+.mode-tab.active{color:#fff}
+.mode-tab[data-mode="focus"].active{background:var(--focus)}
+.mode-tab[data-mode="break"].active{background:var(--break)}
+.mode-tab[data-mode="long-break"].active{background:var(--long-break)}
+.timer-display{text-align:center;margin-bottom:2rem;position:relative}
+.timer-ring{width:260px;height:260px;margin:0 auto}
+.timer-ring svg{transform:rotate(-90deg)}
+.ring-bg{fill:none;stroke:var(--surface);stroke-width:8}
+.ring-progress{fill:none;stroke-width:8;stroke-linecap:round;transition:stroke-dashoffset .5s ease,stroke .3s}
+.ring-progress.focus{stroke:var(--focus)}
+.ring-progress.break{stroke:var(--break)}
+.ring-progress.long-break{stroke:var(--long-break)}
+.timer-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
+.timer-time{font-size:3.5rem;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:2px}
+.timer-label{color:var(--muted);font-size:.85rem;margin-top:.25rem}
+.controls{display:flex;gap:.75rem;justify-content:center;margin-bottom:2rem}
+.btn{padding:.75rem 1.5rem;border:none;border-radius:var(--radius);font-size:1rem;font-weight:600;cursor:pointer;transition:.2s}
+.btn-primary{background:var(--accent);color:#fff;min-width:140px}
+.btn-primary:hover{background:#2563eb}
+.btn-secondary{background:var(--surface);color:var(--text);border:1px solid var(--border)}
+.btn-secondary:hover{background:var(--border)}
+.stats{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:1.5rem}
+.stats-title{font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:.75rem}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;text-align:center}
+.stat-value{font-size:1.5rem;font-weight:700}
+.stat-label{font-size:.75rem;color:var(--muted);margin-top:.15rem}
+.settings{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:1.5rem}
+.settings-title{font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:.75rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.settings-body{display:none}
+.settings-body.open{display:block}
+.setting-row{display:flex;justify-content:space-between;align-items:center;padding:.5rem 0}
+.setting-row label{font-size:.9rem}
+.setting-row input[type="number"]{width:60px;background:var(--bg);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:.4rem;text-align:center;font-size:.9rem}
+.setting-row input[type="checkbox"]{accent-color:var(--accent);width:18px;height:18px}
+.cta{text-align:center;margin-top:1.5rem;padding:1rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius)}
+.cta a{color:var(--accent);text-decoration:none;font-weight:600}
+.cta a:hover{text-decoration:underline}
+.cta p{color:var(--muted);font-size:.8rem;margin-top:.25rem}
+footer{text-align:center;color:var(--muted);font-size:.75rem;margin-top:2rem}
+footer a{color:var(--accent);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>🍅 Focus<span>Tick</span></h1>
+    <p class="subtitle">Pomodoro Timer — Stay focused, take breaks</p>
+  </header>
+
+  <div class="mode-tabs">
+    <button class="mode-tab active" data-mode="focus">Focus</button>
+    <button class="mode-tab" data-mode="break">Break</button>
+    <button class="mode-tab" data-mode="long-break">Long Break</button>
+  </div>
+
+  <div class="timer-display">
+    <div class="timer-ring">
+      <svg viewBox="0 0 260 260">
+        <circle class="ring-bg" cx="130" cy="130" r="120"/>
+        <circle class="ring-progress focus" cx="130" cy="130" r="120" id="progressRing"/>
+      </svg>
+    </div>
+    <div class="timer-text">
+      <div class="timer-time" id="timerTime">25:00</div>
+      <div class="timer-label" id="timerLabel">Focus Time</div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button class="btn btn-primary" id="startBtn">▶ Start</button>
+    <button class="btn btn-secondary" id="resetBtn">↺ Reset</button>
+  </div>
+
+  <div class="stats">
+    <div class="stats-title">Today's Progress</div>
+    <div class="stats-grid">
+      <div><div class="stat-value" id="sessionsCount">0</div><div class="stat-label">Sessions</div></div>
+      <div><div class="stat-value" id="totalFocus">0m</div><div class="stat-label">Focus Time</div></div>
+      <div><div class="stat-value" id="streak">0</div><div class="stat-label">Streak</div></div>
+    </div>
+  </div>
+
+  <div class="settings">
+    <div class="settings-title" id="settingsToggle">⚙️ Settings <span>▼</span></div>
+    <div class="settings-body" id="settingsBody">
+      <div class="setting-row"><label>Focus (min)</label><input type="number" id="focusDur" value="25" min="1" max="90"></div>
+      <div class="setting-row"><label>Break (min)</label><input type="number" id="breakDur" value="5" min="1" max="30"></div>
+      <div class="setting-row"><label>Long Break (min)</label><input type="number" id="longBreakDur" value="15" min="1" max="60"></div>
+      <div class="setting-row"><label>Sessions before Long Break</label><input type="number" id="longBreakAfter" value="4" min="2" max="10"></div>
+      <div class="setting-row"><label>Sound Alert</label><input type="checkbox" id="soundOn" checked></div>
+      <div class="setting-row"><label>Auto-start Breaks</label><input type="checkbox" id="autoBreak" checked></div>
+    </div>
+  </div>
+
+  <div class="cta">
+    <a href="https://maxmini0214.github.io/micro-saas/hub/">← Back to DevToolBox</a>
+    <p>25+ free developer tools</p>
+  </div>
+</div>
+
+<footer>
+  <p>Built by <a href="https://github.com/maxmini0214">MaxMini</a> · 100% client-side · No data collected</p>
+</footer>
+
+<script>
+(function(){
+  const C = 2 * Math.PI * 120;
+  const ring = document.getElementById('progressRing');
+  ring.style.strokeDasharray = C;
+  ring.style.strokeDashoffset = 0;
+
+  const config = {focus:25,break:5,'long-break':15,longBreakAfter:4,sound:true,autoBreak:true};
+  let mode = 'focus', remaining = config.focus*60, total = remaining, running = false, interval = null;
+  let sessions = 0, focusMinutes = 0, streak = 0;
+
+  const labels = {focus:'Focus Time',break:'Short Break','long-break':'Long Break'};
+  const $time = document.getElementById('timerTime');
+  const $label = document.getElementById('timerLabel');
+  const $start = document.getElementById('startBtn');
+  const $sessions = document.getElementById('sessionsCount');
+  const $totalFocus = document.getElementById('totalFocus');
+  const $streak = document.getElementById('streak');
+
+  // Load today's stats
+  const today = new Date().toISOString().slice(0,10);
+  try {
+    const s = JSON.parse(localStorage.getItem('focustick-'+today));
+    if(s){sessions=s.sessions||0;focusMinutes=s.focusMinutes||0;streak=s.streak||0;updateStats();}
+  } catch(e){}
+
+  function saveStats(){
+    localStorage.setItem('focustick-'+today, JSON.stringify({sessions,focusMinutes,streak}));
+  }
+
+  function fmt(s){const m=Math.floor(s/60),ss=s%60;return `${String(m).padStart(2,'0')}:${String(ss).padStart(2,'0')}`;}
+
+  function updateDisplay(){
+    $time.textContent = fmt(remaining);
+    $label.textContent = labels[mode];
+    const pct = total>0 ? (total - remaining)/total : 0;
+    ring.style.strokeDashoffset = C * (1 - pct);
+    document.title = `${fmt(remaining)} — FocusTick`;
+  }
+
+  function updateStats(){
+    $sessions.textContent = sessions;
+    $totalFocus.textContent = focusMinutes < 60 ? focusMinutes+'m' : Math.floor(focusMinutes/60)+'h '+focusMinutes%60+'m';
+    $streak.textContent = streak;
+  }
+
+  function setMode(m){
+    mode = m;
+    document.querySelectorAll('.mode-tab').forEach(t=>t.classList.toggle('active',t.dataset.mode===m));
+    ring.className = 'ring-progress '+m;
+    remaining = config[m]*60; total = remaining;
+    stop(); updateDisplay();
+  }
+
+  function playSound(){
+    if(!config.sound) return;
+    try{const a=new AudioContext(),o=a.createOscillator(),g=a.createGain();o.connect(g);g.connect(a.destination);
+    o.frequency.value=800;o.type='sine';g.gain.value=0.3;o.start();
+    setTimeout(()=>{o.frequency.value=1000},200);
+    setTimeout(()=>{o.frequency.value=600},400);
+    setTimeout(()=>{g.gain.exponentialRampToValueAtTime(0.001,a.currentTime+0.8);o.stop(a.currentTime+0.8)},600);
+    }catch(e){}
+  }
+
+  function complete(){
+    stop(); playSound();
+    if(mode==='focus'){
+      sessions++; focusMinutes+=config.focus; streak++;
+      updateStats(); saveStats();
+      const next = sessions % config.longBreakAfter === 0 ? 'long-break' : 'break';
+      setMode(next);
+      if(config.autoBreak) start();
+    } else {
+      setMode('focus');
+    }
+  }
+
+  function tick(){
+    remaining--;
+    if(remaining<=0){complete();return;}
+    updateDisplay();
+  }
+
+  function start(){running=true;$start.textContent='⏸ Pause';interval=setInterval(tick,1000);}
+  function stop(){running=false;$start.textContent='▶ Start';clearInterval(interval);interval=null;}
+
+  $start.addEventListener('click',()=>running?stop():start());
+  document.getElementById('resetBtn').addEventListener('click',()=>setMode(mode));
+  document.querySelectorAll('.mode-tab').forEach(t=>t.addEventListener('click',()=>setMode(t.dataset.mode)));
+
+  // Settings
+  document.getElementById('settingsToggle').addEventListener('click',()=>{
+    document.getElementById('settingsBody').classList.toggle('open');
+  });
+  ['focusDur','breakDur','longBreakDur'].forEach(id=>{
+    const el=document.getElementById(id);
+    el.addEventListener('change',()=>{
+      const key=id==='focusDur'?'focus':id==='breakDur'?'break':'long-break';
+      config[key]=parseInt(el.value)||config[key];
+      if(mode===key&&!running){remaining=config[key]*60;total=remaining;updateDisplay();}
+    });
+  });
+  document.getElementById('longBreakAfter').addEventListener('change',e=>{config.longBreakAfter=parseInt(e.target.value)||4;});
+  document.getElementById('soundOn').addEventListener('change',e=>{config.sound=e.target.checked;});
+  document.getElementById('autoBreak').addEventListener('change',e=>{config.autoBreak=e.target.checked;});
+
+  updateDisplay();
+})();
+</script>
+</body>
+</html>
