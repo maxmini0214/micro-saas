@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DiffView — Text Diff Checker | DevToolBox</title>
+<meta name="description" content="Compare two text blocks side by side. Instantly highlight additions, deletions, and changes. Free, private, runs entirely in your browser.">
+<meta property="og:title" content="DiffView — Text Diff Checker">
+<meta property="og:description" content="Compare two text blocks and see differences highlighted instantly. No server, no signup.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "DiffView",
+  "description": "Compare two text blocks side by side with highlighted differences.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:24px 16px}
+h1{font-size:1.8rem;margin-bottom:4px;background:linear-gradient(135deg,#38bdf8,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{color:#94a3b8;margin-bottom:20px;font-size:.9rem}
+.container{width:100%;max-width:1100px}
+.inputs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+textarea{width:100%;height:260px;background:#1e293b;border:1px solid #334155;border-radius:8px;color:#e2e8f0;padding:12px;font-family:'Fira Code',monospace;font-size:.85rem;resize:vertical}
+textarea:focus{outline:none;border-color:#818cf8}
+label{font-size:.8rem;color:#94a3b8;margin-bottom:4px;display:block}
+.actions{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;align-items:center}
+button{padding:8px 20px;border:none;border-radius:6px;font-size:.85rem;cursor:pointer;font-weight:600;transition:background .2s}
+.btn-primary{background:#818cf8;color:#fff}
+.btn-primary:hover{background:#6366f1}
+.btn-secondary{background:#334155;color:#e2e8f0}
+.btn-secondary:hover{background:#475569}
+.stats{color:#94a3b8;font-size:.8rem;margin-left:auto}
+#output{background:#1e293b;border:1px solid #334155;border-radius:8px;padding:16px;font-family:'Fira Code',monospace;font-size:.82rem;line-height:1.7;white-space:pre-wrap;word-break:break-all;min-height:120px;max-height:500px;overflow-y:auto}
+.line-add{background:rgba(34,197,94,.15);color:#4ade80}
+.line-del{background:rgba(239,68,68,.15);color:#f87171}
+.line-ctx{color:#94a3b8}
+.line-hdr{color:#818cf8;font-weight:700}
+.line-num{color:#475569;user-select:none;display:inline-block;min-width:3ch;text-align:right;margin-right:8px}
+a.back{color:#818cf8;text-decoration:none;font-size:.8rem;margin-top:20px}
+a.back:hover{text-decoration:underline}
+@media(max-width:640px){.inputs{grid-template-columns:1fr}textarea{height:160px}}
+</style>
+</head>
+<body>
+<h1>🔍 DiffView</h1>
+<p class="subtitle">Paste two texts, see the difference.</p>
+<div class="container">
+  <div class="inputs">
+    <div><label for="textA">Original (A)</label><textarea id="textA" placeholder="Paste original text here..."></textarea></div>
+    <div><label for="textB">Modified (B)</label><textarea id="textB" placeholder="Paste modified text here..."></textarea></div>
+  </div>
+  <div class="actions">
+    <button class="btn-primary" onclick="runDiff()">Compare</button>
+    <button class="btn-secondary" onclick="swapTexts()">⇄ Swap</button>
+    <button class="btn-secondary" onclick="clearAll()">Clear</button>
+    <span class="stats" id="stats"></span>
+  </div>
+  <div id="output"><span class="line-ctx">Results will appear here…</span></div>
+</div>
+<a class="back" href="../hub/">← Back to DevToolBox</a>
+
+<script>
+// Minimal Myers diff (line-level)
+function diff(a,b){
+  const N=a.length,M=b.length,MAX=N+M;
+  if(MAX===0)return[];
+  const V=new Int32Array(2*MAX+2);
+  V.fill(-1);const off=MAX;
+  const trace=[];
+  outer:for(let d=0;d<=MAX;d++){
+    trace.push(V.slice());
+    for(let k=-d;k<=d;k+=2){
+      let x;
+      if(k===-d||(k!==d&&V[off+k-1]<V[off+k+1]))x=V[off+k+1];
+      else x=V[off+k-1]+1;
+      let y=x-k;
+      while(x<N&&y<M&&a[x]===b[y]){x++;y++}
+      V[off+k]=x;
+      if(x>=N&&y>=M)break outer;
+    }
+  }
+  // backtrack
+  let x=N,y=M;const edits=[];
+  for(let d=trace.length-1;d>0;d--){
+    const Vp=trace[d-1],k=x-y;
+    let pk;
+    if(k===-d||(k!==d&&Vp[off+k-1]<Vp[off+k+1]))pk=k+1;
+    else pk=k-1;
+    const px=Vp[off+pk],py=px-pk;
+    while(x>px&&y>py){x--;y--;edits.push({t:'=',a:a[x]})}
+    if(x>px){x--;edits.push({t:'-',a:a[x]})}
+    else if(y>py){y--;edits.push({t:'+',a:b[y]})}
+  }
+  while(x>0&&y>0){x--;y--;edits.push({t:'=',a:a[x]})}
+  while(x>0){x--;edits.push({t:'-',a:a[x]})}
+  while(y>0){y--;edits.push({t:'+',a:b[y]})}
+  return edits.reverse();
+}
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+function runDiff(){
+  const a=document.getElementById('textA').value.split('\n');
+  const b=document.getElementById('textB').value.split('\n');
+  const edits=diff(a,b);
+  let html='',adds=0,dels=0,ln_a=0,ln_b=0;
+  for(const e of edits){
+    if(e.t==='+'){ln_b++;adds++;html+=`<div class="line-add"><span class="line-num">&nbsp;</span><span class="line-num">${ln_b}</span> + ${esc(e.a)}</div>`}
+    else if(e.t==='-'){ln_a++;dels++;html+=`<div class="line-del"><span class="line-num">${ln_a}</span><span class="line-num">&nbsp;</span> - ${esc(e.a)}</div>`}
+    else{ln_a++;ln_b++;html+=`<div class="line-ctx"><span class="line-num">${ln_a}</span><span class="line-num">${ln_b}</span>   ${esc(e.a)}</div>`}
+  }
+  if(!adds&&!dels)html='<div class="line-ctx">✅ Texts are identical.</div>';
+  document.getElementById('output').innerHTML=html;
+  document.getElementById('stats').textContent=`+${adds} / -${dels} lines`;
+}
+
+function swapTexts(){
+  const a=document.getElementById('textA'),b=document.getElementById('textB');
+  [a.value,b.value]=[b.value,a.value];
+}
+function clearAll(){
+  document.getElementById('textA').value='';
+  document.getElementById('textB').value='';
+  document.getElementById('output').innerHTML='<span class="line-ctx">Results will appear here…</span>';
+  document.getElementById('stats').textContent='';
+}
+</script>
+</body>
+</html>
