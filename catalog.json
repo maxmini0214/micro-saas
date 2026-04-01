@@ -280,5 +280,31 @@
     ],
     "deployed": "2026-02-16",
     "stack": "single HTML, inline CSS/JS, zero dependencies"
+  },
+  {
+    "name": "dev-security-checklist",
+    "title": "Developer Security Checklist — Interactive Security Audit Tool",
+    "url": "https://maxmini0214.github.io/dev-security-checklist/",
+    "repo": "https://github.com/maxmini0214/dev-security-checklist",
+    "description": "Interactive developer security checklist with 80+ items across 10 categories including AI/LLM Agent Security. Score your app's security posture A-F.",
+    "monetization": [
+      "gumroad-pro-cta",
+      "ad-slot-reserved"
+    ],
+    "deployed": "2026-03-30",
+    "stack": "single HTML, inline CSS/JS, zero dependencies"
+  },
+  {
+    "name": "password-strength-analyzer",
+    "title": "Password Strength Analyzer — Free Online Security Tool",
+    "url": "https://maxmini0214.github.io/password-strength-analyzer/",
+    "repo": "https://github.com/maxmini0214/password-strength-analyzer",
+    "description": "Analyze password strength with entropy-based scoring, time-to-crack estimates, and smart suggestions. 100% client-side, privacy-friendly.",
+    "monetization": [
+      "gumroad-pro-cta",
+      "ad-slot-reserved"
+    ],
+    "deployed": "2026-03-30",
+    "stack": "single HTML, inline CSS/JS, zero dependencies"
   }
 ]
