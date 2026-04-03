@@ -306,5 +306,18 @@
     ],
     "deployed": "2026-03-30",
     "stack": "single HTML, inline CSS/JS, zero dependencies"
+  },
+  {
+    "name": "color-contrast-checker",
+    "title": "Color Contrast Checker — Free WCAG Accessibility Tool",
+    "url": "https://maxmini0214.github.io/color-contrast-checker/",
+    "repo": "https://github.com/maxmini0214/color-contrast-checker",
+    "description": "Check color contrast ratios against WCAG 2.1 AA and AAA standards. Real-time preview, hex/rgb input, swap colors, suggested fixes. 100% client-side.",
+    "monetization": [
+      "gumroad-pro-cta",
+      "ad-slot-reserved"
+    ],
+    "deployed": "2026-04-03",
+    "stack": "single HTML, inline CSS/JS, zero dependencies"
   }
 ]
